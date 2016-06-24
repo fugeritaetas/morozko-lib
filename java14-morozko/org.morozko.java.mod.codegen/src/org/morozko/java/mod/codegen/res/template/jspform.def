@@ -1,0 +1,13 @@
+<%@ taglib uri="/struts/tiles" prefix="tiles" %>
+<%@ taglib uri="/struts/bean" prefix="bean" %>
+<%@ taglib uri="/struts/logic" prefix="logic" %>
+<%@ taglib uri="/struts/html" prefix="html" %>
+<%@ taglib uri="/struts/nested" prefix="nested" %>
+<%@ taglib uri="/morozko/navmap" prefix="navmap" %>
+<%@ taglib uri="/morozko/mhtml" prefix="mhtml" %>
+<%@ taglib uri="/morozko/mlist" prefix="mlist" %>
+<%@ taglib uri="/morozko/mmap" prefix="mmap" %>
+<%@ taglib uri="/morozko/mlogic" prefix="mlogic" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+{26}

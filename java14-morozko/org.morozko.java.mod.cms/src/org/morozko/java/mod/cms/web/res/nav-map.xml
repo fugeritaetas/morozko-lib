@@ -1,0 +1,94 @@
+<!DOCTYPE nav-map SYSTEM "http://www.morozko.org/data/java/mod/nav-map/dtd/nav-map-1-0.dtd">  
+
+<nav-map>
+
+	<nav-map-config bundle="org.morozko.java.mod.cms.web.res.navmap"/> 
+
+	<nav-handler-list>
+		<nav-handler name="cmsNavHandler" type="org.morozko.java.mod.cms.web.navmap.CmsNavHandler"/>
+	</nav-handler-list>
+
+	<nav-entry-list>
+		
+		<!-- MODULO CMS START -->
+		<nav-entry 	name="cmsPageView"
+					module="cms"
+					title="morozko.java.web.home.core.title"
+					display="morozko.java.web.home.core.display"
+					auth="NOCHECK"
+					handler="cmsNavHandler"/>		
+		<nav-entry 	name="cmsPageExplorer"
+					module="cms"
+					display="morozko.java.web.cms.cmsPageExplorer.display"
+					title="morozko.java.web.cms.cmsPageExplorer.title"					
+					auth="/MOROZKO/JAVA/MOD/WEB/CMS/ADMIN"/>						
+		<nav-entry 	name="cmsFileList"
+					module="cms"
+					display="morozko.java.web.cms.cmsFileList.display"
+					title="morozko.java.web.cms.cmsFileList.title"					
+					auth="/MOROZKO/JAVA/MOD/WEB/CMS/ADMIN"/>		
+		<nav-entry 	name="cmsFilterChainList"
+					module="cms"
+					display="morozko.java.web.cms.cmsFilterChainList.display"
+					title="morozko.java.web.cms.msFilterChainList.title"					
+					auth="/MOROZKO/JAVA/MOD/WEB/CMS/ADMIN"/>											
+		<!-- MODULO CMS END -->					
+																										
+		<nav-alias name="cmsPageFormShow" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>							
+		<nav-alias name="cmsPageFormSave" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>
+		<nav-alias name="cmsPageDelete" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>				
+		<nav-alias name="cmsFragmentFormShow" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>
+		<nav-alias name="cmsFragmentFormSave" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>				
+		<nav-alias name="cmsFragmentDelete" module="cms"
+				nav-entry="cmsPageExplorer" nav-module="cms"/>	
+		<nav-alias name="cmsFileFormShow" module="cms"
+				nav-entry="cmsFileList" nav-module="cms"/>	
+		<nav-alias name="cmsFileFormDelete" module="cms"
+				nav-entry="cmsFileList" nav-module="cms"/>					
+		<nav-alias name="cmsFileFormSave" module="cms"
+				nav-entry="cmsFileList" nav-module="cms"/>		
+		<nav-alias name="cmsFilterChainShowForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>																
+		<nav-alias name="cmsFilterChainSaveForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>																
+		<nav-alias name="cmsFilterHandlerShowForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>																
+		<nav-alias name="cmsFilterHandlerSaveForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>	
+		<nav-alias name="cmsFilterChainDeleteForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>																																				
+		<nav-alias name="cmsFilterHandlerDeleteForm" module="cms"
+				nav-entry="cmsFilterChainList" nav-module="cms"/>																																
+									
+	</nav-entry-list>	
+
+	<nav-menu-list>
+		<nav-menu name="menu-main">
+			<nav-menu-item nav-entry="cmsPageView" nav-module="cms"/>
+		</nav-menu>
+		<nav-menu name="menu-2-home">
+			<nav-menu-item nav-entry="cmsPageView" nav-module="cms"/>
+		</nav-menu>				
+	</nav-menu-list>
+	
+	<nav-tree>
+
+		<nav-node nav-entry="cmsPageExplorer" nav-module="cms" menu-1="menu-main" menu-2="menu-2-home">		
+		</nav-node>
+		<nav-node nav-entry="cmsFileList" nav-module="cms" menu-1="menu-main" menu-2="menu-2-home">
+		</nav-node>
+		<nav-node nav-entry="cmsFilterChainList" nav-module="cms" menu-1="menu-main" menu-2="menu-2-home">
+		</nav-node>		
+		<nav-node nav-entry="cmsPageView" nav-module="cms" menu-1="menu-main" menu-2="menu-2-home">
+		</nav-node>		
+
+	</nav-tree> 
+	
+	<nav-node-default nav-entry="cmsPageView" nav-module="cms"/>
+
+</nav-map>

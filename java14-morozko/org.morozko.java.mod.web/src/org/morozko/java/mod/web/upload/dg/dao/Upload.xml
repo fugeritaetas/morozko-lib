@@ -1,0 +1,25 @@
+<table key="id_upload" name="Upload" update="{0}upload">
+      <view>
+         SELECT v.* FROM {0}upload v 
+      </view>
+      <fields>
+        <field extra="" name="id_upload" type="id"/>
+        <field extra="" name="id_user" type="id"/>
+        <field extra="" name="id_entity" type="id"/>
+        <field extra="" name="file_section" type="varchar"/>
+        <field extra="" name="time_upload" type="timestamp"/>
+        <field extra="" name="state" type="integer"/>
+        <field extra="" name="size" type="integer"/>
+        <field extra="" name="file_name" type="varchar"/>
+        <field extra="" name="file_path" type="varchar"/>
+        <field extra="" name="file_type" type="integer"/>
+        <field extra="" name="file_mode" type="integer"/>
+      </fields>
+      <loads>
+        <load field="id_upload" name="Primary" relations="true" type="one"/>
+        <load field="file_path" name="ByFilePath" relations="true" type="one"/>
+        <load field="id_user" name="ByUser" relations="false" type="all"/>
+        <load field="file_section" name="BySection" relations="false" type="all"/>
+        <load field="file_section;id_entity" name="BySectionAndEntity" relations="false" type="all"/>
+      </loads>
+    </table>

@@ -1,0 +1,103 @@
+<!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<!--+
+	|
+	|	@(#)struts-cms-config.jsp
+	|	@project  : org.morozko.java.mod.app.cms
+	|	@package  : WEB-INF
+	|	@creation : 2006-08-23
+	|	@license  : META-INF/LICENSE.TXT
+	|	@author   : Matteo Franci
+	|
+	+-->
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="cmsPageForm" type="org.morozko.java.mod.app.cms.web.form.CmsPageForm"/>	
+		<form-bean name="cmsFilterChainForm" type="org.morozko.java.mod.app.cms.web.form.CmsFilterChainForm"/>			
+		<form-bean name="cmsFilterHandlerForm" type="org.morozko.java.mod.app.cms.web.form.CmsFilterHandlerForm"/>					
+		<form-bean name="cmsFileForm" type="org.morozko.java.mod.app.cms.web.form.CmsFileForm"/>		
+	</form-beans>
+
+	<global-forwards>
+	</global-forwards>
+	
+	<action-mappings>					
+	
+		<action path="/cmsFileList" type="org.morozko.java.mod.app.cms.web.actions.CmsFileListAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsFileList"/>				
+		</action>		
+		
+		<action path="/cmsFileFormDelete" type="org.morozko.java.mod.app.cms.web.actions.CmsFileDeleteAction">
+			<forward name="Success" path="/cmsFileList.do"/>				
+		</action>				
+		
+		<action path="/cmsFileFormShow" type="org.morozko.java.mod.app.cms.web.actions.CmsFileLoadAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsFileForm"/>				
+		</action>			
+		
+		<action path="/cmsFileFormSave" type="org.morozko.java.mod.app.cms.web.actions.CmsFileSaveAction" name="cmsFileForm" input="morozko.java.web.cms.cmsFileForm">
+			<forward name="Success" path="/cmsFileFormShow.do"/>				
+		</action>					
+	
+		<action path="/cmsPageExplorer" type="org.morozko.java.mod.app.cms.web.actions.CmsPageExplorerAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsPageExplorer"/>				
+		</action>	
+		
+		<action path="/cmsPageFormShow" type="org.morozko.java.mod.app.cms.web.actions.CmsPageFormShowAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsPageForm"/>				
+		</action>			
+		
+		<action path="/cmsPageFormSave" type="org.morozko.java.mod.app.cms.web.actions.CmsPageFormSaveAction" name="cmsPageForm" input="morozko.java.web.cms.cmsPageForm">
+			<forward name="Success" path="morozko.java.web.cms.cmsPageForm"/>				
+		</action>	
+		
+		<action path="/cmsPageDelete" type="org.morozko.java.mod.app.cms.web.actions.CmsPageDeleteAction">
+			<forward name="Success" path="/cmsPageExplorer.do"/>				
+		</action>			
+		
+		<action path="/cmsPageView" type="org.morozko.java.mod.app.cms.web.actions.CmsPageViewAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsPageView"/>				
+		</action>							
+		
+		<action path="/cmsFilterChainList" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterChainListAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsFilterChainList"/>				
+		</action>														
+		
+		<action path="/cmsFilterChainShowForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterChainLoadAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsFilterChainForm"/>				
+		</action>															
+		
+		<action path="/cmsFilterChainSaveForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterChainSaveAction" name="cmsFilterChainForm" input="morozko.java.web.cms.cmsFilterChainForm">
+			<forward name="Success" path="morozko.java.web.cms.cmsFilterChainForm"/>				
+		</action>																	
+		
+		<action path="/cmsFilterHandlerShowForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterHandlerLoadAction">
+			<forward name="Success" path="morozko.java.web.cms.cmsFilterHandlerForm"/>				
+		</action>															
+		
+		<action path="/cmsFilterHandlerSaveForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterHandlerSaveAction" name="cmsFilterHandlerForm" input="morozko.java.web.cms.cmsFilterHandlerForm">
+			<forward name="Success" path="morozko.java.web.cms.cmsFilterHandlerForm"/>				
+		</action>	
+		
+		<action path="/cmsFilterChainDeleteForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterChainDeleteAction">
+			<forward name="Success" path="/cmsFilterChainList.do"/>				
+		</action>				
+		
+		<action path="/cmsFilterHandlerDeleteForm" type="org.morozko.java.mod.app.cms.web.actions.CmsFilterHandlerDeleteAction">
+			<forward name="Success" path="/cmsFilterChainShowForm.do"/>				
+		</action>																	
+		
+	</action-mappings>	
+	
+	<message-resources key="cms" parameter="org.morozko.java.mod.app.cms.web.res.messages"/>			
+
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-cms-defs.xml,/WEB-INF/tiles-defs.xml" />
+    	<set-property property="moduleAware" value="true" />
+	</plug-in>
+
+</struts-config>

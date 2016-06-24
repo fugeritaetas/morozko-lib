@@ -1,0 +1,43 @@
+/*
+ * @(#){0}Action.java
+ *
+ */
+package {1};
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import org.morozko.java.mod.web.actions.AbstractAction;
+import org.morozko.java.core.util.result.ResultBean;
+import org.morozko.java.mod.web.servlet.config.ActionContext;
+import org.morozko.java.mod.web.utils.MessageUtils;
+import {13}.{14};
+import {15}.{16};
+import {15}.{17}FacadeFactory;
+
+/**
+ * <p></p>
+ *
+ * @author Morozko
+ *
+ */
+public class {0} extends AbstractAction '{'
+
+	public ActionForward doExecute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception '{'
+		String forward = STANDARD_FORWARD_SUCCESS;
+		{14} dto = new {14}();
+		ActionContext actionContext = ActionContext.newContext( request, response, this.getServlet().getServletContext() );
+		{16} facade = {17}FacadeFactory.getInstance().get{16}();
+		ResultBean result = facade.handle{19}( dto, actionContext );
+		if ( result != null ) '{'
+		    MessageUtils.queueOperationOk( request );
+			request.setAttribute( "result", result.getResult() );	
+		'}'
+		return mapping.findForward( forward );
+	'}'
+
+'}'

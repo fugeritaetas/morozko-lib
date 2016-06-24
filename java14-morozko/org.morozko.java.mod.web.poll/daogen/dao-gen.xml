@@ -1,0 +1,148 @@
+<?xml	 version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen> 
+
+  <id-generator-list>
+  	<id-generator name="pollGenerator" type="org.morozko.java.mod.db.dao.idgen.GenericSeqIdGenerator" config="sequenceName=seq_id_mor_poll"/>
+  </id-generator-list>   
+
+  <table-list>
+
+    <table name="PollStat">
+      <view>
+            SELECT d.id_poll_index, a.id_poll_option, count(*) AS answer_number
+			FROM {0}poll_answer a, {0}poll_data d 
+			WHERE a.id_poll_data = d.id_poll_data
+			GROUP BY d.id_poll_index, a.id_poll_option
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="ID_POLL_OPTION" type="id"/>
+        <field extra="" name="ANSWER_NUMBER" type="bigint"/>
+      </fields> 
+      <loads>
+        <load relations="true" name="ByPoll" type="all" field="ID_POLL_INDEX"/> 
+      </loads>
+    </table>    
+    
+    <table name="PollStatDay">
+      <view>
+            SELECT d.data_time, d.id_poll_index, a.id_poll_option, count(*) AS answer_number
+			FROM {0}poll_answer a, 
+				 ( SELECT DISTINCT TO_CHAR( data_time, ''YYYY-MM-DD'' ) AS data_time, id_poll_index, id_poll_data FROM {0}poll_data ) d
+			WHERE a.id_poll_data = d.id_poll_data
+			GROUP BY d.id_poll_index, d.data_time, a.id_poll_option
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="ID_POLL_OPTION" type="id"/>
+        <field extra="" name="ANSWER_NUMBER" type="bigint"/>
+        <field extra="" name="DATA_TIME" type="varchar"/>
+      </fields> 
+      <loads>
+        <load relations="true" name="ByPollAndDate" type="all" field="ID_POLL_INDEX;DATA_TIME"/> 
+      </loads>
+    </table>      
+    
+    
+    
+    <table name="PollIndex" update="{0}POLL_INDEX" key="ID_POLL_INDEX" id-generator="pollGenerator">
+      <view>
+         SELECT v.* FROM {0}POLL_INDEX v 
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="QUESTIONARY_TYPE" type="id"/>
+        <field extra="" name="QUESTIONARY_NAME" type="varchar"/>
+        <field extra="" name="QUESTIONARY_DESCRIPTION" type="varchar"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listPollQuestion" type="oneToMany" table="PollQuestion" field="ID_POLL_INDEX"/>
+      </relations>      
+      <loads>
+        <load relations="true" name="PollIndexPk" type="one" field="ID_POLL_INDEX"/>
+		<load relations="false" name="ByName" type="one" field="QUESTIONARY_NAME"/>        
+      </loads>
+    </table>
+    
+    <table name="PollQuestion" update="{0}POLL_QUESTION" key="ID_POLL_QUESTION" order-by=" order_by ASC, id_poll_question ASC " id-generator="pollGenerator">
+      <view>
+         SELECT v.* FROM {0}POLL_QUESTION v 
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="ID_POLL_QUESTION" type="id"/>
+        <field extra="" name="QUESTION_TEXT" type="varchar"/>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="ORDER_BY" type="id"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listPollOption" type="oneToMany" table="PollOption" field="ID_POLL_QUESTION"/>
+      </relations>
+      <loads>
+        <load relations="true" name="PollQuestionPk" type="one" field="ID_POLL_QUESTION"/>
+        <load relations="false" name="ByIndex" type="all" field="ID_POLL_INDEX"/>
+      </loads>
+    </table>    
+    
+    <table name="PollOption" update="{0}POLL_OPTION" key="ID_POLL_OPTION" order-by=" order_by ASC, id_poll_option ASC " id-generator="pollGenerator">
+      <view>
+         SELECT v.* FROM {0}POLL_OPTION v 
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_OPTION" type="id"/>
+        <field extra="" name="ID_POLL_QUESTION" type="id"/>
+        <field extra="" name="OPTION_TEXT" type="varchar"/>
+        <field extra="" name="OPTION_TYPE" type="integer"/>
+        <field extra="" name="OPTION_DEFAULT" type="varchar"/>
+        <field extra="" name="ID_POLL_OPTION_PARENT" type="id"/>
+        <field extra="" name="ORDER_BY" type="id"/>
+		<field extra="" name="OPTION_TYPE" type="numeric"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listPollOptionKids" type="oneToMany" table="PollOption" field="ID_POLL_OPTION_PARENT"/>
+      </relations>      
+      <loads>
+        <load relations="true" name="PollOptionPk" type="one" field="ID_POLL_OPTION"/>
+        <load relations="false" name="ByQuestion" type="all" field="ID_POLL_QUESTION"/>
+        <load relations="false" name="ByParent" type="all" field="ID_POLL_OPTION_PARENT"/>
+      </loads>
+    </table>
+
+    <table name="PollData" update="{0}POLL_DATA" key="ID_POLL_DATA" id-generator="pollGenerator">
+      <view>
+         SELECT v.* FROM {0}POLL_DATA v 
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_DATA" type="id"/>
+        <field extra="" name="ID_POLL_INDEX" type="id"/>
+        <field extra="" name="DATA_TIME" type="timestamp"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listPollAnswer" type="oneToMany" table="PollAnswer" field="ID_POLL_DATA"/>
+      </relations>      
+      <loads>
+        <load relations="true" name="PollDataPk" type="one" field="ID_POLL_DATA"/>
+      </loads>
+    </table>
+
+    <table name="PollAnswer" update="{0}POLL_ANSWER" key="ID_POLL_ANSWER" id-generator="pollGenerator">
+      <view>
+         SELECT v.* FROM {0}POLL_ANSWER v 
+      </view>
+      <fields>
+        <field extra="" name="ID_POLL_ANSWER" type="id"/>
+        <field extra="" name="ID_POLL_OPTION" type="id"/>
+        <field extra="" name="ID_POLL_DATA" type="id"/>
+        <field extra="" name="OPTION_VALUE" type="varchar"/>
+      </fields>
+      <loads>
+        <load relations="true" name="PollAnswerPk" type="one" field="ID_POLL_ANSWER"/>
+      </loads>
+    </table>
+
+  </table-list>
+  
+</dao-gen>

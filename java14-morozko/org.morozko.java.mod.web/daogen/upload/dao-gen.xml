@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen>
+
+  <table-list>
+
+    <table name="Upload" update="{0}upload" key="id_upload">
+      <view>
+         SELECT v.* FROM {0}upload v 
+      </view>
+      <fields>
+        <field extra="" name="id_upload" type="id"/>
+        <field extra="" name="id_user" type="id"/>
+        <field extra="" name="id_entity" type="id"/>
+        <field extra="" name="file_section" type="varchar"/>
+        <field extra="" name="time_upload" type="timestamp"/>
+        <field extra="" name="state" type="integer"/>
+        <field extra="" name="size" type="integer"/>
+        <field extra="" name="file_name" type="varchar"/>
+        <field extra="" name="file_path" type="varchar"/>
+        <field extra="" name="file_type" type="integer"/>
+        <field extra="" name="file_mode" type="integer"/>
+      </fields>
+      <loads>
+        <load relations="true" name="Primary" type="one" field="id_upload"/>
+        <load relations="true" name="ByFilePath" type="one" field="file_path"/>
+        <load relations="false" name="ByUser" type="all" field="id_user"/>
+        <load relations="false" name="BySection" type="all" field="file_section"/>
+        <load relations="false" name="BySectionAndEntity" type="all" field="file_section;id_entity"/>
+      </loads>
+    </table> 
+        
+  </table-list>
+  
+</dao-gen>

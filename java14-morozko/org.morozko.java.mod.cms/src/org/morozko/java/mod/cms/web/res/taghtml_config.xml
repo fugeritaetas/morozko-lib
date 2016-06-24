@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--+
+	| @(#)dao-gen-1-0.dtd
+	|
+	| @project    : org.morozko.java.mod.app.cms
+	| @package    : org.morozko.java.mod.app.cms.web.res
+	| @creation   : 23-ago-2006
+	| @author     : Matteo Franci
+	|
+	| File di configurazione per i tag html inseriti all' interno dell' applicazione
+	|
+	| Il contenuto di questo file viene sostituito con dei message format nei quali gli argomenti sono come segue : 
+	| {0} - il context path
+	| {1} - l'url base del mapping della servlet cms
+	|	
+	+-->
+	
+<regex-config>
+
+	<!-- html-link-pageurl -->
+	<match name="html-link-pageurl">
+		<regex>(?s)\[html:link:pageurl\](.*?)\[/html:link:pageurl\]</regex>
+		<replace>
+			<![CDATA[{0}/cms/cmsPageView.do?pageUrl=$1]]>
+		</replace>
+	</match>
+	
+	<!-- html-link-pageid -->
+	<match name="html-link-pageid">
+		<regex>(?s)\[html:link:pageid\](.*?)\[/html:link:pageid\]</regex>
+		<replace>
+			<![CDATA[{0}/cms/cmsPageView.do?idCmsPage=$1]]>
+		</replace>
+	</match>	
+	
+	<!-- html-doc-pageid -->
+	<match name="html-doc-pageid">
+		<regex>(?s)\[html:doc:pageid type='(.*?)'\](.*?)\[/html:doc:pageid\]</regex>
+		<replace>
+			<![CDATA[{0}{1}/doc/page.$1?pageUrl=$2]]>
+		</replace>
+	</match>		
+	
+	<!-- html-doc-pageurl -->
+	<match name="html-doc-pageurl">
+		<regex>(?s)\[html:doc:pageurl type='(.*?)'\](.*?)\[/html:doc:pageurl\]</regex>
+		<replace>
+			<![CDATA[{0}{1}/doc/page.$1?pageUrl=$2]]>
+		</replace>
+	</match>			
+	
+	<match name="html-app-url">
+		<regex>(?s)\[html:app:url\](.*?)\[/html:app:url\]</regex>
+		<replace>
+			<![CDATA[{0}$1]]>
+		</replace>
+	</match>		
+	
+</regex-config>

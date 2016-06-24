@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen>
+
+  <id-generator-list>
+  	<id-generator name="mainGenerator" type="org.morozko.java.mod.db.dao.idgen.GenericSeqIdGenerator" config="sequenceName=seq_id_option"/>
+  </id-generator-list>
+
+  <table-list>
+
+    <table name="OptionCatalog" update="{0}OPTION_CATALOG" key="id_option_catalog" id-generator="mainGenerator">
+      <view>
+         SELECT v.* FROM {0}OPTION_CATALOG v 
+      </view>
+      <fields>
+        <field name="id_option_catalog" type="id"/>
+        <field name="catalog_key" type="varchar"/>
+        <field name="description" type="varchar"/>
+        <field name="catalog_type" type="id"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listOptionItem" type="oneToMany" table="OptionItem" field="ID_OPTION_CATALOG"/>
+      </relations>      
+      <loads>
+        <load relations="true" name="OptionCatalogPk" type="one" field="ID_OPTION_CATALOG"/>
+        <load relations="true" name="OptionCatalogSk1" type="one" field="CATALOG_KEY"/>
+      </loads>
+    </table>
+    
+    <table name="OptionItem" update="{0}OPTION_ITEM" key="id_option_item" id-generator="mainGenerator">
+      <view>
+        SELECT v.* , c.catalog_key
+		FROM {0}OPTION_ITEM v, {0}option_catalog c
+		WHERE v.id_option_catalog = c.id_option_catalog 
+      </view>
+      <fields>
+        <field name="id_option_item" type="id"/>
+        <field name="item_value" type="varchar"/>
+        <field name="enabled" type="id"/>
+        <field name="ordering" type="id"/>
+        <field name="id_option_catalog" type="id"/>
+      </fields>
+      <loads>
+        <load relations="false" name="OptionItemPk" type="one" field="ID_OPTION_ITEM"/>
+        <load relations="false" name="OptionItemSk1" type="one" field="id_option_catalog;item_value"/>
+      </loads>
+    </table>
+
+  </table-list>
+  
+</dao-gen>

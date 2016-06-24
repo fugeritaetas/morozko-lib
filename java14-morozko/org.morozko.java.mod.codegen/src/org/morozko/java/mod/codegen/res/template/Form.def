@@ -1,0 +1,25 @@
+package {12};
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMapping;
+import {13}.{14};
+
+public class {9} extends {22} '{'
+
+	private static final long serialVersionUID = {10};
+	
+	@Override
+	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) '{'
+		ActionErrors errors = new ActionErrors();
+		return errors;
+	'}'
+
+	public {14} toDTO() '{'
+		{14} dto = new {14}();
+		{24}
+		return dto;
+	'}'
+	
+'}'

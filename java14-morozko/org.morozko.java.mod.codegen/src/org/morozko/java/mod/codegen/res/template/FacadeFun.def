@@ -1,0 +1,11 @@
+
+	// start template - handle{19}
+	public ResultBean handle{19}( {13}.{14} dto, ActionContext actionContext ) throws Exception '{'
+		SessionContext sessionContext = actionContext.getSessionContext();
+		ParamMap paramMap = actionContext.getParamMap();
+		this.getLog().info( "{16}.{19}() : START" );
+		{20}
+		this.getLog().info( "{16}.{19}() : END : "+result );
+		return result;
+	'}'
+	// end template - handle{19}

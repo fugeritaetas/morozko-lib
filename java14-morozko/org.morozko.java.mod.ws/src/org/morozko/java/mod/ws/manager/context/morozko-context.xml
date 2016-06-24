@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<manager-config>
+
+	<context-list>
+		<context name="MOROZKO">
+			<module name="INFO">
+				<operation name="VERSION" type="org.morozko.java.mod.ws.manager.context.InfoOperation">
+					<info name="service-version">1.0.1 ( 2010-06-06 )</info>
+				</operation>		
+				<operation name="HELP" type="org.morozko.java.mod.ws.manager.context.InfoOperation">
+					<info name="help">
+Bundled in context : MOROZKO
+  modules : 
+    INFO, operations : 
+      VERSION - get application version
+      HELP - this help
+      LIST - allow operation listing ( if both context and module are provided returns operations in module,
+             if only context is provided, returns modules in context, if no param is provided returns context list )
+        parameters : 
+          context - context name ( optional )
+          module - module name ( optional )
+					</info>
+				</operation>					
+				<operation name="LIST" type="org.morozko.java.mod.ws.manager.context.ListOperation"/>
+			</module>
+		</context>
+	</context-list>
+
+</manager-config>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen>
+
+  <table-list>
+  
+    <table name="UserAccount" update="user_account" key="id_user_account">
+      <view>
+         SELECT v.* FROM user_account v 
+      </view>
+      <fields>
+        <field extra="auto_increment" name="id_user_account" type="id"/>
+        <field extra="" name="user_name" type="varchar"/>
+        <field extra="" name="user_pass" type="varchar"/>
+        <field extra="" name="user_enabled" type="integer"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listGroup" type="oneToMany" table="UserGroupuser" field="id_user_account"/>
+      </relations>   
+      <loads>
+        <load relations="true" name="Primary" type="one" field="id_user_account"/>
+        <load relations="true" name="UserAccountSk1" type="one" field="user_name"/>
+      </loads>
+    </table>
+    
+    <table name="UserGroup" update="user_group" key="id_user_group">
+      <view>
+         SELECT v.* FROM user_group v 
+      </view>
+      <fields>
+        <field extra="auto_increment" name="id_user_group" type="id"/>
+        <field extra="" name="group_name" type="varchar"/>
+      </fields>
+      <loads>
+        <load relations="true" name="Primary" type="one" field="id_user_group"/>
+        <load relations="true" name="UserGroupSk1" type="one" field="group_name"/>
+      </loads>
+    </table>
+    
+    <table name="UserGroupuser" update="user_groupuser" key="id_user_groupuser">
+      <view>
+         SELECT v.*, g.group_name FROM user_groupuser v, user_group g WHERE v.id_user_group = g.id_user_group  
+      </view>
+      <fields>
+        <field extra="auto_increment" name="id_user_groupuser" type="id"/>
+        <field extra="" name="id_user_account" type="id"/>
+        <field extra="" name="id_user_group" type="id"/>
+      </fields>
+      <loads>
+        <load relations="true" name="Primary" type="one" field="id_user_groupuser"/>
+        <load relations="true" name="UserGroupuserSk1" type="one" field="id_user_account;id_user_group"/>
+      </loads>
+    </table>
+    
+  </table-list>
+  
+</dao-gen>

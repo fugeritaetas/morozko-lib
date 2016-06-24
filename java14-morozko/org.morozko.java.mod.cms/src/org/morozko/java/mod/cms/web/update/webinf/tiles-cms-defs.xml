@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+     <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!--+
+	|
+	|	@(#)struts-cms-config.jsp
+	|	@project  : org.morozko.java.mod.app.cms
+	|	@package  : WEB-INF
+	|	@creation : 2006-08-23
+	|	@license  : META-INF/LICENSE.TXT
+	|	@author   : Matteo Franci
+	|
+	+-->
+
+<tiles-definitions>
+
+	<definition name='morozko.java.web.cms.cmsFileList' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  			
+		<put name='content' value='/struts/cms/content/cmsFileList.jsp'/>  		
+	</definition>	
+	
+	<definition name='morozko.java.web.cms.cmsFileForm' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  			
+		<put name='content' value='/struts/cms/content/cmsFileForm.jsp'/>  		
+	</definition>		
+
+	<definition name='morozko.java.web.cms.cmsPageExplorer' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  			
+		<put name='content' value='/struts/cms/content/cmsPageExplorer.jsp'/>  		
+	</definition>	
+	
+	<definition name='morozko.java.web.cms.cmsPageForm' path='/struts/cms/cms.jsp'>						
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  			
+		<put name='content' value='/struts/cms/content/cmsPageForm.jsp'/>  		
+	</definition>		
+	
+	<definition name='morozko.java.web.cms.cmsPageView' path='/struts/cms/cms.jsp'>	
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  				
+		<put name='content' value='/struts/cms/content/cmsPageView.jsp'/>  		
+	</definition>		
+
+	<definition name='morozko.java.web.cms.cmsFilterChainList' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  				
+		<put name='content' value='/struts/cms/content/cmsFilterChainList.jsp'/>  		
+	</definition>		
+	
+	<definition name='morozko.java.web.cms.cmsFilterChainForm' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  				
+		<put name='content' value='/struts/cms/content/cmsFilterChainForm.jsp'/>  		
+	</definition>		
+	
+	<definition name='morozko.java.web.cms.cmsFilterHandlerForm' path='/struts/cms/cms.jsp'>							
+		<put name='meta' value='/struts/cms/commons/meta.jsp'/>  				
+		<put name='content' value='/struts/cms/content/cmsFilterHandlerForm.jsp'/>  		
+	</definition>			
+
+</tiles-definitions>  

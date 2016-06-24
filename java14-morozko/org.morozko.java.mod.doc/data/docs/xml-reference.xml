@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+
+<!DOCTYPE doc SYSTEM "http://www.morozko.org/data/java/mod/doc/dtd/doc-1-0.dtd">
+
+	<doc>
+		<metadata>
+			<!-- 
+			<info name="default-font-name">arial</info>
+			<info name="default-font-size">10</info>
+			 -->
+			<info name="page-orient">horizontal</info>
+			<header-ext>
+				<table columns="1" colwidths="100" width="100">
+					<row>
+						<cell align="center" border-width="0"><para>Morozko Doc : Xml Reference</para></cell>
+					</row>
+				</table>
+			</header-ext>
+			<footer-ext>
+				<table columns="1" colwidths="100" width="100">
+					<row>
+						<cell align="center" border-width="0"><para>Version 1 - 2009-09-01</para></cell>
+					</row>				
+				</table>
+			</footer-ext>	
+		</metadata>
+		<body> 
+		
+		<table columns="3" colwidths="20;60;20" width="100">
+		
+			<!-- titolo -->
+			<row>
+				<cell border-width="1" colspan="3" align="center">
+					<para size="12" style="bold">XML Tag Reference</para>
+				</cell>
+			</row>
+
+			<row>
+				<cell border-width="1" colspan="1" align="center">
+					<para size="12" style="bold">Tag</para>
+				</cell>
+				<cell border-width="1" colspan="1" align="center">
+					<para size="12" style="bold">Description</para>
+				</cell>
+				<cell border-width="1" colspan="1" align="center">
+					<para size="12" style="bold">Nested</para>
+				</cell>						
+			</row>	
+			
+					
+			<row>
+				<cell border-width="1" colspan="1" align="left">
+					<para>doc</para>
+				</cell>
+				<cell border-width="1" colspan="1" align="left">
+					<para>root tag for the xml document.</para>
+				</cell>	
+				<cell border-width="1" colspan="1" align="left">
+					<para> ( meta | metadata ), body </para>
+				</cell>								
+			</row>		
+			
+			<row>
+				<cell border-width="1" colspan="1" align="left">
+					<para>metadata (meta)</para>
+				</cell>
+				<cell border-width="1" colspan="1" align="left">
+					<para>Contains metadata information about the document, like header/footer and other usegul display information. 
+Tag meta is the same as metadata but is deprecated and kept for backward compatibility.</para>
+				</cell>	
+				<cell border-width="1" colspan="1" align="left">
+					<para>info*, header?, footer?, header-ext?, footer-ext?</para>
+				</cell>								
+			</row>				
+					
+		</table>	
+	
+		</body>
+	</doc>
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE nav-map SYSTEM "http://www.morozko.org/data/java/mod/nav-map/dtd/nav-map-1-0.dtd">
+
+
+<nav-map>
+
+	<nav-map-config bundle="{0}"/> 
+
+	<nav-entry-list>
+	
+					
+	</nav-entry-list>	
+
+	<nav-menu-list>
+		<nav-menu name="menu-main">			
+		</nav-menu>
+		<nav-menu name="menu-sec-1">		
+		</nav-menu>		
+		<nav-menu name="menu-sec-2">				
+		</nav-menu>				
+	</nav-menu-list>
+	
+	<nav-tree>
+	
+	</nav-tree> 
+	
+	<nav-node-default nav-entry="home" nav-module="{1}"/>
+
+</nav-map>
+

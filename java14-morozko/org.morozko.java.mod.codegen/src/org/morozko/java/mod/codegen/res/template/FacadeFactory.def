@@ -1,0 +1,11 @@
+package {2};
+
+public class {1}FacadeFactory '{'
+
+	public static {1}FacadeFactory getInstance() '{'
+		return new {1}FacadeFactory();
+	'}'
+
+	{0}
+	
+'}'

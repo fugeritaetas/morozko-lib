@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen>
+
+	<id-generator-list>
+		<id-generator name="mainGenerator" type="org.morozko.java.mod.db.dao.idgen.GenericSeqIdGenerator" config="sequenceName=seq_id_props"/>
+	</id-generator-list>
+
+	<table-list>
+
+    <table name="PropsCatalog" update="{0}PROPS_CATALOG" key="ID_PROPS_CATALOG" id-generator="mainGenerator">
+      <view>
+         SELECT v.* FROM {0}PROPS_CATALOG v 
+      </view>
+      <fields>
+        <field extra="" name="ID_PROPS_CATALOG" type="id"/>
+        <field extra="" name="PROP_CAT" type="varchar"/>
+        <field extra="" name="PROP_DESCRIPTION" type="varchar"/>
+      </fields>
+      <loads>
+        <load relations="true" name="PropsCatalogPk" type="one" field="ID_PROPS_CATALOG"/>
+		<load relations="true" name="PropsCatalogSk" type="one" field="PROP_CAT"/>        
+      </loads>
+    </table>
+    
+    <table name="PropsValues" update="{0}PROPS_VALUES" key="ID_PROPS_VALUE" id-generator="mainGenerator">
+      <view>
+         SELECT p.*, c.prop_cat
+		 FROM {0}props_values p, {0}props_catalog c
+		 WHERE  p.id_props_catalog = c.id_props_catalog
+      </view>
+      <fields>
+        <field extra="" name="ID_PROPS_VALUE" type="id"/>
+ 		<field extra="" name="PROP_CAT" type="varchar"/>        
+        <field extra="" name="PROP_KEY" type="varchar"/>
+        <field extra="" name="PROP_VALUE" type="varchar"/>
+        <field extra="" name="ID_PROPS_CATALOG" type="id"/>
+      </fields>
+      <relations>
+        <relation cascade="false" name="listPropsCatalog" type="oneToMany" table="PropsCatalog" field="ID_PROPS_CATALOG"/>
+      </relations>
+      <loads>
+        <load relations="true" name="PropsValuesPk" type="one" field="ID_PROPS_VALUE"/>
+        <load relations="true" name="PropsValuesSk1" type="one" field="ID_PROPS_CATALOG;PROP_KEY"/>
+        <load relations="true" name="ByCatalog" type="all" field="PROP_CAT"/>
+      </loads>
+    </table>
+
+  </table-list>
+  
+</dao-gen>

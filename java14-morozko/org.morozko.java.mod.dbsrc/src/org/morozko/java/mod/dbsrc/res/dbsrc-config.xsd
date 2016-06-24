@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<xsd:schema targetNamespace="http://www.morozko.org/data/java/mod/dbsrc/xsd/dbsrc-config.xsd" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" 
+	xmlns:dbsrc="http://www.morozko.org/data/java/mod/dbsrc/xsd/dbsrc-config.xsd">
+	
+          		<xsd:annotation>
+          			<xsd:documentation>
+          				Version 0.1 ( 2009-05-20 )
+          			</xsd:documentation>
+          		</xsd:annotation>
+
+    <xsd:element name="dbsrc-config" type="dbsrc:dbsrc-configType"></xsd:element>
+    
+    <xsd:complexType name="dbsrc-configType">
+    	<xsd:sequence>
+    		<xsd:element name="general-props" maxOccurs="1" minOccurs="1">
+    			<xsd:complexType>
+    				<xsd:sequence>
+    					<xsd:element name="general-property"
+    						type="dbsrc:propertyType" maxOccurs="unbounded" minOccurs="0">
+    					</xsd:element>
+    				</xsd:sequence>
+    				<xsd:attribute ref="dbsrc:name"></xsd:attribute>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="data-source-list" maxOccurs="1"
+    			minOccurs="1">
+    			<xsd:complexType>
+    				<xsd:sequence>
+    					<xsd:element name="data-source"
+    						type="dbsrc:data-sourceType" maxOccurs="unbounded" minOccurs="0">
+    					</xsd:element>
+    				</xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="data-operation-list" maxOccurs="1" minOccurs="1">
+    			<xsd:complexType>
+    				<xsd:sequence>
+    					<xsd:element name="data-operation"
+    						type="dbsrc:data-operationType" maxOccurs="unbounded" minOccurs="0">
+    					</xsd:element>
+    				</xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+
+    <xsd:simpleType name="att-nameType">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:minLength value="1"></xsd:minLength>
+    		<xsd:maxLength value="256"></xsd:maxLength>
+    	</xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:attribute name="name" type="dbsrc:att-nameType"></xsd:attribute>
+
+    <xsd:attribute name="key" type="dbsrc:att-nameType"></xsd:attribute>
+
+    <xsd:complexType name="configurationType">
+    	<xsd:sequence>
+    		<xsd:element name="property" type="dbsrc:propertyType"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</xsd:element>    	
+    		<xsd:element name="configuration"
+    			type="dbsrc:configurationType" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute ref="dbsrc:name"></xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="propertyType">
+    	<xsd:simpleContent>
+    		<xsd:extension base="dbsrc:att-value-type">
+    			<xsd:attribute ref="dbsrc:key" use="required"></xsd:attribute>
+    		</xsd:extension>
+    	</xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="att-value-type">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:minLength value="0"></xsd:minLength>
+    		<xsd:maxLength value="4096"></xsd:maxLength>
+    	</xsd:restriction>
+    </xsd:simpleType>
+
+
+    
+    
+    <xsd:attributeGroup name="class-group">
+    	<xsd:attribute name="name" type="dbsrc:att-nameType"></xsd:attribute>
+    	<xsd:attribute name="type" type="dbsrc:att-nameType"></xsd:attribute>
+    </xsd:attributeGroup>
+
+    <xsd:attributeGroup name="ds-group">
+    	<xsd:attribute name="from-ds" type="dbsrc:att-nameType"></xsd:attribute>
+        <xsd:attribute name="to-ds" type="dbsrc:att-nameType"></xsd:attribute>
+        <xsd:attribute name="depends" type="dbsrc:att-nameType"></xsd:attribute>
+    </xsd:attributeGroup>
+
+
+    <xsd:complexType name="data-sourceType">
+    	<xsd:complexContent>
+    		<xsd:extension base="dbsrc:classType">
+    			<xsd:sequence>
+    				<xsd:element name="configuration-ds" type="dbsrc:configurationType"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="data-operationType">
+    	<xsd:complexContent>
+    		<xsd:extension base="dbsrc:classType">
+    			<xsd:sequence>
+    				<xsd:element name="configuration-op" type="dbsrc:configurationType"></xsd:element>
+    			</xsd:sequence>
+    			<xsd:attributeGroup ref="dbsrc:ds-group"></xsd:attributeGroup>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="classType">
+    	<xsd:attributeGroup ref="dbsrc:class-group"></xsd:attributeGroup>
+    </xsd:complexType>
+
+    
+</xsd:schema>

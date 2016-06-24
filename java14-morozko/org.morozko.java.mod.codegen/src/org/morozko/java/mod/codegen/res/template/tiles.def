@@ -1,0 +1,4 @@
+	<definition name="{2}" extends="{3}">							 			
+		<put name="content" value="/struts/{4}/content/{5}.jsp"/>  		
+	</definition>	
+	

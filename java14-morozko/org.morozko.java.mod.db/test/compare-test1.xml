@@ -1,0 +1,26 @@
+<compare-config>
+
+	<cf-from-config
+		db-cf-mode="DC"
+		db-mode-dc-drv="com.mysql.jdbc.Driver"
+		db-mode-dc-url="jdbc:mysql://localhost/test1"
+		db-mode-dc-usr="root"
+		db-mode-dc-pwd="r00t"
+	/>
+	
+	<cf-to-config
+		db-cf-mode="DC"
+		db-mode-dc-drv="com.mysql.jdbc.Driver"
+		db-mode-dc-url="jdbc:mysql://localhost/test1"
+		db-mode-dc-usr="root"
+		db-mode-dc-pwd="r00t"
+	/>	
+	
+	<entry-list>
+		<entry type="table">
+			<query-from>table_a</query-from>
+			<query-to>table_b</query-to>
+		</entry>
+	</entry-list> 
+
+</compare-config>

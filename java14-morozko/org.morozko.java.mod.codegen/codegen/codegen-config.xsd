@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<xsd:schema targetNamespace="http://www.morozko.org/data/java/xsd/codegen-config.xsd" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" 
+	xmlns:codegen="http://www.morozko.org/data/java/xsd/codegen-config.xsd">
+	 
+    
+    <xsd:annotation>
+          			<xsd:documentation>
+          				Version 0.1 ( 2010-02-07 )
+          			</xsd:documentation>
+          		</xsd:annotation>
+
+    
+    
+
+
+
+
+
+    <xsd:element name="codegen-config"
+    	type="codegen:codegen-configType">
+    </xsd:element>
+    
+    <xsd:complexType name="codegen-configType">
+    	<xsd:sequence>
+    		<xsd:element name="general-props" maxOccurs="1" minOccurs="1">
+    			<xsd:complexType>
+    				<xsd:sequence>
+    					<xsd:element name="property"
+    						maxOccurs="unbounded" minOccurs="0">
+    						<xsd:complexType>
+    							<xsd:attribute name="name"
+    								type="xsd:string">
+    							</xsd:attribute>
+    							<xsd:attribute name="value"
+    								type="xsd:string">
+    							</xsd:attribute>
+    						</xsd:complexType>
+    					</xsd:element>
+    				</xsd:sequence>
+    			</xsd:complexType>
+    		</xsd:element>
+    		<xsd:element name="nav-forms"
+    			type="codegen:nav-formsType" maxOccurs="1" minOccurs="0">
+    		</xsd:element>
+    		<xsd:element name="nav-map" type="codegen:nav-mapType" maxOccurs="1" minOccurs="1"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="nav-mapType">
+    	<xsd:sequence>
+    		<xsd:element name="nav-node" type="codegen:nav-nodeType"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="nav-nodeType">
+    	<xsd:sequence>
+    		<xsd:element name="nav-node" type="codegen:nav-nodeType"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="module" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="description" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="facade" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="overwrite" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="form" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="operation" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="jsp-include" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="form-input" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="form-validate" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="auth" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="form-fieldType">
+    	<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="type" type="codegen:field-typeType"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:simpleType name="field-typeType">
+    	<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="string"></xsd:enumeration>    	
+    		<xsd:enumeration value="integer"></xsd:enumeration>
+    		<xsd:enumeration value="long"></xsd:enumeration>
+    		<xsd:enumeration value="double"></xsd:enumeration>
+    		<xsd:enumeration value="date"></xsd:enumeration>
+    		<xsd:enumeration value="timestamp"></xsd:enumeration>
+    		<xsd:enumeration value="time"></xsd:enumeration>
+    	</xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="nav-formsType">
+    	<xsd:sequence>
+    		<xsd:element name="nav-form" type="codegen:nav-formType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="nav-formType">
+    	<xsd:sequence>
+    		<xsd:element name="form-field" type="codegen:form-fieldType"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="daogen" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+</xsd:schema>

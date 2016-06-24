@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codegen-config 
+	xmlns="http://www.morozko.org/data/java/xsd/codegen-config.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.morozko.org/data/java/xsd/codegen-config.xsd codegen-config.xsd ">
+  <general-props>
+    <property name="template-dir" value="codegen/template"/>
+    <property name="output-dir" value="../gest1-web"/>
+    <property name="output-dir-src" value="src"/>
+    <property name="output-dir-jsp" value="WebContent"/>
+    <property name="output-file-struts-config" value="WebContent/WEB-INF/struts/struts-casc-config.xml"/>
+    <property name="output-file-navmap-conf" value="WebContent/WEB-INF/nav-map.xml"/>        
+    <property name="output-file-tiles-defs" value="WebContent/WEB-INF/struts/tiles-casc-defs.xml"/>    
+    <property name="output-file-navmap-props" value="src/org/morozko/java/app/cascina/res/navmap.properties"/>
+    <property name="output-file-stuts-message" value="src/org/morozko/java/app/cascina/res/message-casc.properties"/>            
+    <property name="base-package" value="org.morozko.java.app.cascina"/>
+    <property name="module-name" value="casc"/>
+    <property name="menu-1-def" value="menu-main"/>
+    <property name="menu-2-def" value="menu-sec1"/>
+    <property name="menu-3-def" value="menu-sec2"/>
+    <property name="daogen-plugin" value="M:/devel/java/workspace-main/gest1-web/daogen"/>
+  </general-props>
+  
+  <nav-forms>
+  	<nav-form name="Prodotto" daogen="ProdottoIndex"/>
+  </nav-forms>
+  
+  <nav-map>
+    <nav-node name="home" module="casc" description="Home Page" facade="Main">
+      <!-- gestione ordini resi -->
+      <nav-node name="ordini" module="casc" description="Gestione Ordini Resi" facade="Ordini">
+      	<nav-node name="ordini_ins" module="casc" description="Inserimento" facade="Ordini"/>
+      	<nav-node name="ordini_mod" module="casc" description="Modifica" facade="Ordini"/>
+      	<nav-node name="ordini_del" module="casc" description="Cancellazione" facade="Ordini"/>
+      	<nav-node name="ordini_sta" module="casc" description="Gestione Stati" facade="Ordini">
+      		<nav-node name="ordini_sta_add" module="casc" description="Aggiungi Stato" facade="Ordini"/>
+      		<nav-node name="ordini_sta_rem" module="casc" description="Rimuovi Stato" facade="Ordini"/>
+      	</nav-node>
+      	<nav-node name="ordini_sto" module="casc" description="Storico" facade="Ordini">
+			<nav-node name="ordini_sto_ins" module="casc" description="Inserimento Storico" facade="Ordini"/>      	
+      	</nav-node>
+      </nav-node>
+      <!-- listino merci -->
+      <nav-node name="merci" module="casc" description="Listino Merci" facade="Merci">
+      	<nav-node name="merci_ins" module="casc" description="Inserimento" facade="Merci"/>
+      	<nav-node name="merci_mod" module="casc" description="Modifica" facade="Merci"/>
+      	<nav-node name="merci_del" module="casc" description="Cancellazione" facade="Merci"/>
+      </nav-node>     
+      <!-- magazzino -->
+      <nav-node name="magazzino" module="casc" description="Carico/Scarico Magazzino" facade="Magazzino"/>
+      <!-- gestione economica -->
+      <nav-node name="eco" module="casc" description="Gestione Ordini Resi" facade="Magazzino">
+      	<nav-node name="eco_ddt" module="casc" description="Emissione DDT/Bolla" facade="Magazzino"/>
+      	<nav-node name="eco_fat" module="casc" description="Emissione Fattura" facade="Magazzino"/>
+      	<nav-node name="eco_cas" module="casc" description="Chisura Cassa" facade="Magazzino"/>
+      </nav-node>     
+      <!-- resoconti -->
+      <nav-node name="stat" module="casc" description="Resoconti" facade="Resoconti">
+      	<nav-node name="stat_day" module="casc" description="Giornalieri" facade="Resoconti"/>
+      	<nav-node name="stat_wee" module="casc" description="Settimanali" facade="Resoconti"/>
+      	<nav-node name="stat_mon" module="casc" description="Mensili" facade="Resoconti"/>
+      </nav-node>
+      <!-- integrazione cassa -->
+      <nav-node name="cassa" module="casc" description="Integrazione cassa" facade="Cassa"/>
+      <!-- materie prime -->
+      <nav-node overwrite="0" name="materie" module="casc" description="Lista Materie Prime" facade="Materie" operation="daogen-load-all:ProdottoIndex">
+      	<nav-node overwrite="0" jsp-include="materie_ins_save" name="materie_ins" module="casc" description="Inserimento" facade="Materie" operation="daogen-load-one:ProdottoIndex:Primary"/>
+      	<nav-node overwrite="0" name="materie_ins_save" module="casc" description="Inserimento" facade="Materie" form="Prodotto" form-input="materie_ins" form-validate="true" operation="daogen-insert-one:ProdottoIndex"/>
+      	<nav-node overwrite="0" jsp-include="materie_mod_save" name="materie_mod" module="casc" description="Modifica" facade="Materie" form="Prodotto" form-input="materie_ins" form-validate="true" operation="daogen-load-one:ProdottoIndex:Primary"/>
+      	<nav-node overwrite="0" name="materie_mod_save" module="casc" description="Modifica" facade="Materie" form="Prodotto" operation="daogen-update-one:ProdottoIndex"/>
+      	<nav-node overwrite="0" name="materie_del" module="casc" description="Cancellazione" facade="Materie" operation="daogen-delete-one:ProdottoIndex"/>
+      	<nav-node name="materie_sta" module="casc" description="Gestione Stati" facade="Materie"/>
+      </nav-node>   
+      <!-- gestione anagrafica -->
+      <nav-node name="anag" module="casc" description="Gestione Anagrafica" facade="Anagrafica">
+      	<nav-node name="anag_ins" module="casc" description="Inserimento" facade="Anagrafica"/>
+      	<nav-node name="anag_mod" module="casc" description="Modifica" facade="Anagrafica"/>
+      	<nav-node name="anag_del" module="casc" description="Cancellazione" facade="Anagrafica"/>
+      </nav-node>   
+      <!-- gestione utenti -->
+      <nav-node name="user" module="casc" description="Gestione Utenti" facade="Utenti">
+      	<nav-node name="user_ins" module="casc" description="Inserimento" facade="Utenti"/>
+      	<nav-node name="user_mod" module="casc" description="Modifica" facade="Utenti"/>
+      	<nav-node name="user_del" module="casc" description="Cancellazione" facade="Utenti"/>
+      	<nav-node name="user_pro" module="casc" description="Profilazione" facade="Utenti"/>
+      </nav-node>       
+      <!-- calendario eventi -->
+      <nav-node name="cal" module="casc" description="Calendario Eventi" facade="Calendario">
+      	<nav-node name="cal_ins" module="casc" description="Inserimento" facade="Calendario"/>
+      	<nav-node name="cal_mod" module="casc" description="Modifica" facade="Calendario"/>
+      	<nav-node name="cal_del" module="casc" description="Cancellazione" facade="Calendario"/>
+      </nav-node>    
+      <!-- gestione menu -->
+      <nav-node name="menu" module="casc" description="Gestione Menu" facade="Menu">
+      	<nav-node name="menu_ins" module="casc" description="Inserimento Menu" facade="Menu"/>
+      	<nav-node name="menu_mod" module="casc" description="Modifica Menu" facade="Menu"/>
+      	<nav-node name="menu_del" module="casc" description="Cancellazione Menu" facade="Menu"/>
+      	<nav-node name="menuric_ins" module="casc" description="Ricetta Menu" facade="Menu"/>
+      	<nav-node name="menuric_mod" module="casc" description="Ricetta Menu" facade="Menu"/>
+      	<nav-node name="menuric_del" module="casc" description="Ricetta Menu" facade="Menu"/>
+      </nav-node>  
+      <!-- gestione preventivi -->
+      <nav-node name="prev" module="casc" description="Gestione Preventivi" facade="Preventivi">
+      	<nav-node name="prev_ins" module="casc" description="Inserimento" facade="Preventivi"/>
+      	<nav-node name="prev_mod" module="casc" description="Modifica" facade="Preventivi"/>
+      	<nav-node name="prev_del" module="casc" description="Cancellazione" facade="Preventivi"/>
+      </nav-node>    
+      <!-- calendario prenotazioni -->
+      <nav-node name="calpren" module="casc" description="Calendario Prenotazioni" facade="Prenotazioni">
+      	<nav-node name="calpren_ins" module="casc" description="Inserimento" facade="Prenotazioni"/>
+      	<nav-node name="calpren_mod" module="casc" description="Modifica" facade="Prenotazioni"/>
+      	<nav-node name="calpren_del" module="casc" description="Cancellazione" facade="Prenotazioni"/>
+      </nav-node>    
+      <!-- prenotazioni -->
+      <nav-node name="pren" module="casc" description="Prenotazioni" facade="Prenotazioni">
+      	<nav-node name="pren_ins" module="casc" description="Inserimento" facade="Prenotazioni"/>
+      	<nav-node name="pren_mod" module="casc" description="Modifica" facade="Prenotazioni"/>
+      	<nav-node name="pren_del" module="casc" description="Cancellazione" facade="Prenotazioni"/>
+      </nav-node>   
+    </nav-node>
+    
+  </nav-map>
+</codegen-config>

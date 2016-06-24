@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-cmd.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen-helpers.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-doc.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-log.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-message.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-navmap.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-sync.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-text.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools-db.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-web.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

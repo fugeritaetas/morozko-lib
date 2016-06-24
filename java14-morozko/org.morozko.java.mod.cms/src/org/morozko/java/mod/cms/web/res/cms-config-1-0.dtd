@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	/*
+	 * @(#)dao-gen-1-0.dtd
+	 *
+	 * @project    : org.morozko.java.mod.app.cms
+	 * @package    : org.morozko.java.mod.app.cms.web.res
+	 * @creation   : 23-ago-2006
+	 *
+	 * DTD per la configurazione del modulo cms
+	 */
+
+	<!DOCTYPE cms-config SYSTEM "http://www.openinformatica.org/java/jlib/data/mod/app/cms/dtd/cms-config-1-0.dtd">
+       
+-->
+
+<!ENTITY % Boolean "( true | false )">
+
+<!--+
+	| Elemento radice del file di configurazione della libreria DAO-GEN2
+	+-->
+<!ELEMENT cms-config ( id-generator-list?, type-handler-list?, table-list )>
+

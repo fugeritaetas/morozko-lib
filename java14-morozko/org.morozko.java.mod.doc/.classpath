@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/javalibs/misc/itext/itext-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/javalibs/misc/itext/iText-rtf-2.1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.mod.web"/>
+	<classpathentry kind="lib" path="/javalibs/misc/jexcelapi/2_6_5/jxl.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="dgsrc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen-helpers.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-navmap.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-web.jar"/>
+	<classpathentry kind="lib" path="/javalibs/apache/struts/1.3.8/struts-core-1.3.8.jar"/>
+	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/javalibs/j2ee.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,8 @@
+
+<change-log project="org.morozko.java.mod.tools.db" label="toolsdb">
+	<version id="0.2.1" date="2006-xx-xx">
+		<log type="feature" priority="1">
+			MDEX : Aggiunta gestione dell' indice delle tabelle e delle chiavi nel documento RTF.
+		</log>			
+	</version>
+</change-log>

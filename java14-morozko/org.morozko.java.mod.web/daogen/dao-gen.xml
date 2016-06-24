@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+
+<dao-gen>
+
+	  <id-generator-list>
+  		<id-generator name="mainGenerator" type="org.morozko.java.mod.db.dao.idgen.GenericSeqIdGenerator" config="sequenceName=seq_id_jlib_mod_web"/>
+	  </id-generator-list>  
+
+  <table-list>
+  
+    <table name="WebAccessData" update="web_access_data" id-generator="mainGenerator">
+      <view>
+         SELECT v.* FROM web_access_data v 
+      </view>
+      <fields>
+        <field name="id_web_access_data" type="id"/>
+        <field name="session_id" type="varchar"/>
+        <field name="request_uri" type="varchar"/>
+        <field name="request_url" type="varchar"/>
+        <field name="request_method" type="varchar"/>
+        <field name="request_query_string" type="varchar"/>
+        <field name="request_context_path" type="varchar"/>
+        <field name="request_remote_addr" type="varchar"/>
+        <field name="request_remote_host" type="varchar"/>
+        <field name="request_remote_port" type="integer"/>
+        <field name="request_server_name" type="varchar"/>
+        <field name="request_server_port" type="integer"/>
+        <field name="request_scheme" type="varchar"/>
+        <field name="response_status_code" type="integer"/>
+        <field name="application_host" type="varchar"/>
+        <field name="request_start" type="timestamp"/>        
+        <field name="request_end" type="timestamp"/>
+      </fields>
+      <loads>
+        <load field="id_web_access_data" name="WebAccessDataPk" relations="true" type="one"/>
+      </loads>
+    </table>
+    
+  </table-list>
+  
+</dao-gen>

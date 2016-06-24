@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!--+
+    |
+    |  /*
+    |   * @(#)build.xml
+    |   *
+    |   * @module      : org.morozko.java.mod.daogen
+    |   * @version     : 0.1.1
+    |   * @author      : Morozko
+    |   * @date        : 2007.07.13
+    |   */
+    |
+    +-->
+
+<project name="mj-mod-db-props" default="dist">
+
+	<import file="../javalibs/extra/ant-fun/build-mod.xml"/> 
+
+</project>

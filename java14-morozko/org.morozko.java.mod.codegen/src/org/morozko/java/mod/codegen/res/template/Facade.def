@@ -1,0 +1,16 @@
+package {0};
+
+import org.morozko.java.core.util.result.ResultBean;
+import org.morozko.java.mod.web.servlet.config.SessionContext;
+import org.morozko.java.mod.web.servlet.config.ActionContext;
+import org.morozko.java.core.ent.servlet.request.ParamMap;
+import org.morozko.java.core.log.BasicLogObject;
+
+public class {1} extends BasicLogObject '{'
+
+	protected {1}() '{'
+	'}'
+	
+	{2}
+
+'}'

@@ -1,0 +1,6 @@
+		<nav-entry 	name="{5}"
+					module="{4}" 
+					title="navmap.{5}.title"
+					label="navmap.{5}.label"
+					display="navmap.{5}.display"
+					auth="{27}"/>	

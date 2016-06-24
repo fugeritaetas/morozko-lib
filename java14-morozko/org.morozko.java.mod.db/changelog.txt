@@ -1,0 +1,8 @@
+	+----------+
+	|CHANGE LOG|
+	+----------+
+
+2007.08.10
+----------
+Added method insertQueryBuilder() in class org.morozko.java.mod.db.metadata.MetaDataUtils.
+This method generate a standard insert query for a TableModel.

@@ -1,0 +1,16 @@
+<!-- sample config -->
+<sql-config>
+
+	<connection-factory
+		db-cf-mode="DS"
+		db-mode-ds-name="${DATA_SOURCE_JNDI}"
+		/>
+
+	<query name="${query_name_1}" description="${query_description_1}" type="${query}" key="${key_field_for_update}">
+		<sql>
+			Here goes the query ( ex. SELECT * FROM test )
+		</sql>
+		<update field="${field}" column="${column}" table="${table_for_update}" type="${field_to_update)"/>
+	</query>
+
+</sql-config>

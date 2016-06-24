@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	/*
+	 * @(#)dao-gen-1-0.dtd
+	 *
+	 * DTD per la configurazione della libreria DAO-GEN
+	 */
+
+	<!DOCTYPE dao-gen SYSTEM "http://www.morozko.org/data/java/mod/dao-gen/dtd/dao-gen-1-0.dtd">
+       
+-->
+
+<!ENTITY % Boolean "( true | false )">
+
+<!--+
+	|	Tipi di dati supportati : 
+	|	id - Tipo dati nativo della libreria
+	|	idnz - Tipo dati nativo della libreria	(con zero trattato come null)
+	|   idauto - Tipo dati nativo della libreria (auto incrememnt)
+	|	numeric - java.sql.Types.NUMERIC
+	|	integer - java.sql.Types.INTEGER
+	|	bigint - java.sql.Types.BIGINT		
+	|	varchar - java.sql.Types.VARCHAR
+	|	char - java.sql.Types.CHAR
+	|	double - java.sql.Types.DOUBLE
+	|	float - java.sql.Types.FLOAT
+	|	date - java.sql.Types.DATE
+	|	time - java.sql.Types.TIME				
+	|	timestamp - java.sql.Types.TIMESTAMP
+	|	smallint - java.sql.Types.SMALLINT
+	|	tinyint - java.sql.Types.TINYINT	
+	|	boolean - java.sql.Types.BIT		
+	|   bigdecimal - java.sql.Types.DOUBLE ( ma si mappa su java.math.BigDecimal )
+	|   bidinteger - java.sql.Types.BIGINT ( ma si mappa su java.math.BigInteger )
+	+-->
+<!ENTITY % FieldType "( id | idnz | idauto | numeric | integer | 
+	bigint | varchar | char | double | float | date | time | timestamp | 
+	smallint | tinyint | blob | clob | boolean | bigdecimal | biginteger )">
+
+<!--+
+	| Tipi di relazione supportate : 
+	| oneToOne - 0:1, 1:1
+	| ontToMany - 0:n, 1:n
+	+-->
+<!ENTITY % RelationType "( oneToOne | oneToMany )">
+
+<!--+
+	| Tipi di metodi di caricamento supportati : 
+	| one - carica solo il primo elemento del result set
+	| all - carica tutti gli elementi del result set
+	+-->
+<!ENTITY % LoadType "( one | all )">
+
+<!--+
+	| Tipo di operazione supportato
+	+-->
+<!ENTITY % OperationType "( update | delete )">
+
+
+<!--+
+	| Elemento radice del file di configurazione della libreria DAO-GEN2
+	+-->
+<!ELEMENT dao-gen ( id-generator-list?, type-handler-list?, table-list )>
+
+
+<!--+
+	| Id Genrator
+	+-->
+<!ELEMENT id-generator-list ( id-generator* )>
+<!ELEMENT id-generator EMPTY>
+<!ATTLIST id-generator name CDATA #REQUIRED>
+<!ATTLIST id-generator type CDATA #REQUIRED>
+<!ATTLIST id-generator config CDATA #IMPLIED>
+
+<!--+
+	| Type handler 
+	+-->
+<!ELEMENT type-handler-list ( type-handler* )>
+
+<!ELEMENT type-handler EMPTY>
+<!ATTLIST type-handler name CDATA #REQUIRED>
+<!ATTLIST type-handler type CDATA #REQUIRED>
+<!ATTLIST type-handler default-for %FieldType; #IMPLIED>
+
+
+<!ELEMENT table-list ( table* )>
+
+<!ELEMENT table ( view , fields?, aliases?, relations?, loads?, operations? )>
+<!ATTLIST table fake CDATA #IMPLIED>
+<!ATTLIST table name CDATA #REQUIRED>
+<!ATTLIST table update CDATA #IMPLIED>
+<!ATTLIST table key CDATA #IMPLIED>
+<!ATTLIST table order-by CDATA #IMPLIED>
+<!ATTLIST table id-generator CDATA #IMPLIED>
+
+
+<!ELEMENT view ( #PCDATA  )>
+
+
+<!ELEMENT fields ( field+ )>
+
+
+<!ELEMENT field EMPTY>
+<!ATTLIST field name CDATA #REQUIRED>
+<!ATTLIST field type %FieldType; #REQUIRED>
+<!ATTLIST field type-handler CDATA #IMPLIED>
+<!ATTLIST field fake %Boolean; #IMPLIED> 		<!-- default : false -->
+<!ATTLIST field unsafe %Boolean; #IMPLIED> 		<!-- default : false -->
+<!ATTLIST field exclude-rse %Boolean; #IMPLIED> 		<!-- default : false -->
+<!ATTLIST field extra CDATA #IMPLIED>
+
+
+
+<!ELEMENT aliases ( alias+ )>
+
+
+<!ELEMENT alias EMPTY>
+<!ATTLIST alias name CDATA #REQUIRED>
+<!ATTLIST alias field CDATA #REQUIRED>
+
+
+<!ELEMENT relations ( relation+ )>
+
+
+<!ELEMENT relation ( relation-sql? )>
+<!ATTLIST relation name CDATA #REQUIRED>
+<!ATTLIST relation table CDATA #REQUIRED>
+<!ATTLIST relation field CDATA #REQUIRED>
+<!ATTLIST relation field-out CDATA #IMPLIED>
+<!ATTLIST relation order-by CDATA #IMPLIED>
+<!ATTLIST relation cascade %Boolean; #IMPLIED> 		<!-- default : false -->
+<!ATTLIST relation type %RelationType; #REQUIRED>
+
+<!ELEMENT relation-sql ( #PCDATA  )>
+
+
+<!ELEMENT loads ( load+ )>
+
+
+<!ELEMENT load EMPTY>
+<!ATTLIST load name CDATA #REQUIRED>
+<!ATTLIST load type %LoadType; #REQUIRED>
+<!ATTLIST load field CDATA #REQUIRED>
+<!ATTLIST load relations %Boolean; #REQUIRED>
+
+<!ELEMENT operations ( operation+ )>
+<!ELEMENT operation EMPTY>
+<!ATTLIST operation name CDATA #REQUIRED>
+<!ATTLIST operation type %OperationType; #REQUIRED>
+<!ATTLIST operation field CDATA #REQUIRED>
