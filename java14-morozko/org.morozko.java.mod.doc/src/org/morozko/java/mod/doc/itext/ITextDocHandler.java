@@ -288,7 +288,7 @@ public class ITextDocHandler implements DocHandler {
 	
 	protected static Table createTable( DocTable docTable, ITextHelper docHelper ) throws Exception {
 		
-		System.out.println(  "Handle table DONE ! -> "+docTable.getClass().getName()+" - "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000+" / "+Runtime.getRuntime().maxMemory()/1000/1000 );
+		LogFacade.getLog().debug( "Handle table DONE ! -> "+docTable.getClass().getName()+" - "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000+" / "+Runtime.getRuntime().maxMemory()/1000/1000 );
 		
 		int maxMem = 0;
 		
@@ -668,7 +668,15 @@ public class ITextDocHandler implements DocHandler {
 				if ( docPara.getLeading() != null ) {
 					phrase.setLeading( docPara.getLeading().floatValue() );
 				}
-				Chunk ck = new Chunk( docPara.getText(), new Font( Font.HELVETICA, docPara.getSize() ) );
+				Font f = new Font( Font.HELVETICA, docPara.getSize() );
+				if ( docPara.getForeColor() != null ) {
+					try {
+						f.setColor( parseHtmlColor( docPara.getForeColor() ) );	
+					} catch (Exception fe) {
+						LogFacade.getLog().warn( "Error setting fore color on footer : "+docPara.getForeColor(), fe );
+					}
+				}
+				Chunk ck = new Chunk( docPara.getText(), f );
 				phrase.add( ck );
 			} else if ( docElement instanceof DocImage ) {
 				DocImage docImage = (DocImage)docElement;

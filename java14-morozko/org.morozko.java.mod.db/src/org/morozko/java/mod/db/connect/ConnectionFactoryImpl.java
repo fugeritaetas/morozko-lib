@@ -313,7 +313,6 @@ class DSConnectionFactory extends ConnectionFactoryImpl {
 		try {
 			Context ctx = new InitialContext();
 			source = (DataSource) ctx.lookup(dsName);
-            source.getConnection().close();
 		} catch (NamingException ne) {
             ne.printStackTrace();
 			throw (new DAOException("Impossibile creare la DataSource", ne));

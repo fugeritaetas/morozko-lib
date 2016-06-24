@@ -135,14 +135,14 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
     /* (non-Javadoc)
      * @see it.engine.backup.TableBackup#backupTable(java.lang.String, java.sql.Connection, java.sql.Connection)
      */
-    public int backupTable(String table, Connection from, Connection to)throws SQLException {
-        return this.backupTable(table, from, to, "SELECT * FROM "+table);
+    public int backupTable(String table, Connection from, Connection to , TableConfig tableConfig  )throws SQLException {
+        return this.backupTable(table, from, to, "SELECT * FROM "+table, tableConfig );
     }
 
     /* (non-Javadoc)
      * @see it.engine.backup.TableBackup#backupTable(java.lang.String, java.sql.Connection, java.sql.Connection, java.lang.String)
      */
-    public int backupTable(String table, Connection from, Connection to, String select) throws SQLException {
+    public int backupTable(String table, Connection from, Connection to, String select, TableConfig tableConfig ) throws SQLException {
     	this.getLog().info( "table  : "+table );
     	this.getLog().info( "select : "+select );
     	
@@ -152,8 +152,12 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
 
         int count = 0;
 
-        to.setAutoCommit( false );
-        
+        if ( PROP_STATEMENT_MODE_SINGLE.equalsIgnoreCase( this.statementMode ) ) {
+        	to.setAutoCommit( true );
+        } else {
+        	to.setAutoCommit( false );	
+        }
+
         this.getLog().debug("Statement mode           : "+this.statementMode);
         this.getLog().debug("Starting backup of table : "+table);
         this.getLog().debug("Select statement : "+select);
@@ -186,16 +190,37 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
         ResultSetMetaData rsmd = fromRS.getMetaData();
         // test
         
+    	BackupAdaptor backupAdaptorFrom = null;;
+    	BackupAdaptor backupAdaptorTo = null;;
+    	
+    	if ( tableConfig.getAdaptorFrom() != null ) {
+    		backupAdaptorFrom = tableConfig.getAdaptorFrom();
+    		this.getLog().info("Override adaptor from : "+backupAdaptorFrom );
+    	} else {
+    		try {
+    			backupAdaptorFrom = (BackupAdaptor)ClassHelper.newInstance( this.adaptorFrom );
+    		} catch (Exception e) {
+    			throw new SQLException( e.toString() );
+    		}
+    	}
+    	if ( tableConfig.getAdaptorTo() != null ) {
+    		backupAdaptorTo = tableConfig.getAdaptorTo();
+    		this.getLog().info("Override adaptor to : "+backupAdaptorTo );
+    	} else {
+    		try {
+				backupAdaptorTo = (BackupAdaptor)ClassHelper.newInstance( this.adaptorTo );
+			} catch (Exception e) {
+				throw new SQLException( e.toString() );
+			}
+    	}
+        
         while (fromRS.next()) {
             rowCount++;
             String comment = null;
             StringBuffer fullComment = new StringBuffer();
             long res = 0;
             try {
-            	
-            	BackupAdaptor backupAdaptorFrom = (BackupAdaptor)ClassHelper.newInstance( this.adaptorFrom );
-            	BackupAdaptor backupAdaptorTo = (BackupAdaptor)ClassHelper.newInstance( this.adaptorTo );
-            	
+
                 for (int k=0; k<=toTableColumns.length-1; k++) {
                 	String colName = toTableColumns[k];
                 	int colIndex = (k+1);
@@ -207,13 +232,16 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
                 
                 comment = "executing insert ";
                 try {
-                	if ( PROP_STATEMENT_MODE_EXECUTE.equalsIgnoreCase( this.statementMode ) ) {
-                    	res+= toPS.executeUpdate();	
+                	if ( PROP_STATEMENT_MODE_SINGLE.equalsIgnoreCase( this.statementMode ) ) {
+                		res+= toPS.executeUpdate();
+                	} else if ( PROP_STATEMENT_MODE_EXECUTE.equalsIgnoreCase( this.statementMode ) ) {
+                		res+= toPS.executeUpdate();	
                     } else {
                     	toPS.addBatch();
                     }	
                 } catch (SQLException e) {
                 	this.getLog().error("Error backing up table "+table+" on row "+rowCount+", "+fullComment, e);
+                	
                 	throw e;
                 }
                 
@@ -225,7 +253,9 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
                 
                 if ( count>= commitOn ) {
                 	this.getLog().debug( "commit count : "+count+" time : "+(System.currentTimeMillis()-starTime) );
-                	if ( PROP_STATEMENT_MODE_EXECUTE.equalsIgnoreCase( this.statementMode ) ) {
+                	if ( PROP_STATEMENT_MODE_SINGLE.equalsIgnoreCase( this.statementMode ) ) {
+                		// skip commit
+                	} else if ( PROP_STATEMENT_MODE_EXECUTE.equalsIgnoreCase( this.statementMode ) ) {
                 		to.commit();	
                 	} else {
                 		toPS.executeBatch();

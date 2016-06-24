@@ -19,7 +19,7 @@ public class DefaultLoggerFactory implements LoggerFactory {
 	
 	private Properties CFG = new Properties();
 	
-	private static int logLevel = 4;
+	private static LogLevelPointer logLevel = new LogLevelPointer( 4 );
 	
 	private String logExcludePrefix = null;
 	
@@ -36,7 +36,7 @@ public class DefaultLoggerFactory implements LoggerFactory {
 		CFG = props;
 		APPENDER.clear();
 		APPENDER.add( StreamAppender.out );
-		logLevel = Integer.parseInt( CFG.getProperty( "log.level", String.valueOf( logLevel ) ) );
+		logLevel.setLogLevel( Integer.parseInt( props.getProperty( "log.level", String.valueOf( logLevel.getLogLevel() ) ) ) );
 		logExcludePrefix = CFG.getProperty( "log.exclude.prefix" );
 		logInit( "logLevel         : "+logLevel );
 		logInit( "logExcludePrefix : "+logExcludePrefix );
@@ -59,15 +59,38 @@ public class DefaultLoggerFactory implements LoggerFactory {
 
 }
 
+class LogLevelPointer {
+	
+	public LogLevelPointer(int logLevel) {
+		super();
+		this.setLogLevel( logLevel );
+	}
+
+	private int logLevel;
+	
+	public synchronized void setLogLevel( int logLevel ) {
+		this.logLevel = logLevel;
+	}
+	
+	public int getLogLevel() {
+		return this.logLevel;
+	}
+	
+}
+
 class DefaultLogger implements Logger {
     
+	public String toString() {
+		return this.getClass().getName()+"["+this.logLevel.getLogLevel()+"]";
+	}
+
 	private Appender appender;
 	
     private String prefix;
 
-    private int logLevel;
+    private LogLevelPointer logLevel;
     
-    public DefaultLogger(String prefix, int logLevel, Appender appender) {
+    public DefaultLogger(String prefix, LogLevelPointer logLevel, Appender appender) {
         this.prefix = "["+prefix+"]";
         this.logLevel = logLevel;
         this.appender = appender;
@@ -97,7 +120,7 @@ class DefaultLogger implements Logger {
     }
     
     private void log(int level, Object obj) {
-    	if (level<=this.logLevel) {
+    	if (level<=this.logLevel.getLogLevel()) {
 			long time = System.currentTimeMillis();
 			String sTime = "["+new java.sql.Date(time)+" "+new java.sql.Time(time)+"]";
 			this.appender.write( sTime+LL_DES[level]+this.prefix+obj, level);

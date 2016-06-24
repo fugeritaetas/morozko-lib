@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.text.NumberFormat;
 
 import org.morozko.java.core.log.BasicLogObject;
+import org.morozko.java.core.log.LogFacade;
 
 public abstract class QueryOutputFun extends BasicLogObject implements Serializable {
 	
@@ -28,13 +30,25 @@ public abstract class QueryOutputFun extends BasicLogObject implements Serializa
 		
 	}
 	
+	public static final int DEFAULT_FLUSH_FRAME = 10*1000;
+	
 	private void prepare() {
 		this.rowCount = 0;
 	}
 	
+	private static String format( long number ) {
+		return NumberFormat.getInstance().format( number );
+	}
+	
 	public void output( Connection conn, String sql, OutputStream os ) throws Exception {
+		this.output( conn, sql, os, DEFAULT_FLUSH_FRAME );
+	}
+	
+	public void output( Connection conn, String sql, OutputStream os, int flushFrame ) throws Exception {
 		this.prepare();
 		this.start( os );
+		long time = System.currentTimeMillis();
+		long newTime = time;
 		try {
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery( sql );
@@ -53,8 +67,12 @@ public abstract class QueryOutputFun extends BasicLogObject implements Serializa
 				}
 				this.outputRow( buffer );
 				this.rowCount++;
-				if ( this.rowCount % 10000 == 0 ) {
+				if ( this.rowCount % flushFrame == 0 ) {
+					long oldTime = newTime;
+					newTime = System.currentTimeMillis();
 					this.flush();
+					os.flush();
+					LogFacade.getLog().info( "row count : "+format( rowCount )+", frame time (ms) : "+format( (newTime-oldTime) )+", total time (ms) : "+format( (newTime-time) ) );
 				}
 			}
 			rs.close();

@@ -48,7 +48,7 @@ import org.w3c.dom.Element;
  */
 public class BackupFacade {
 
-	public static final String VERSION = "BackupFacade 1.0.9 - 2014-06-25";
+	public static final String VERSION = "BackupFacade 1.1.0 - 2016-06-17";
 	
 	public static int backup( Element config ) throws Exception {
 		return backup( config, CfConfig.EMPTY_CONFIG );
@@ -102,7 +102,9 @@ public class BackupFacade {
 		Connection to = backupConfig.getFactoryTo().getConnection();		
 		
 		// pre script
+		runSqlList( from, backupConfig.getPreSqlFromList() );
 		runSqlList( to, backupConfig.getPreSqlToList() );
+		
 		
 		GenericSequenceReset sequenceReset = new GenericSequenceReset();
 		
@@ -120,14 +122,15 @@ public class BackupFacade {
 			String tableName = tableConfig.getTable();
 			String sql = tableConfig.getSelect();
 			if ( sql == null ) {
-				result+= backupConfig.getTableBackup().backupTable( tableName, from, to);	
+				result+= backupConfig.getTableBackup().backupTable( tableName, from, to, tableConfig );	
 			} else {
-				result+= backupConfig.getTableBackup().backupTable( tableName, from, to, sql );
+				result+= backupConfig.getTableBackup().backupTable( tableName, from, to, sql, tableConfig);
 			}
 		}
 		
 		if ( result == 0 ) {
-			runSqlList( to, backupConfig.getPostSqlToList() );	
+			runSqlList( to, backupConfig.getPostSqlToList() );
+			runSqlList( from, backupConfig.getPostSqlFromList() );
 		} else {
 			LogFacade.getLog().info( "Result errors : "+result+", skip post queries" );
 		}

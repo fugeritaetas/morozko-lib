@@ -39,6 +39,11 @@ public class TableConfig {
 	
 	private String meta;
 
+
+	private BackupAdaptor adaptorFrom;
+	
+	private BackupAdaptor adaptorTo;
+	
 	/**
 	 * @return the select
 	 */
@@ -74,6 +79,24 @@ public class TableConfig {
 	public void setMeta(String meta) {
 		this.meta = meta;
 	}
+
+	public BackupAdaptor getAdaptorFrom() {
+		return adaptorFrom;
+	}
+
+	public void setAdaptorFrom(BackupAdaptor adaptorFrom) {
+		this.adaptorFrom = adaptorFrom;
+	}
+
+	public BackupAdaptor getAdaptorTo() {
+		return adaptorTo;
+	}
+
+	public void setAdaptorTo(BackupAdaptor adaptorTo) {
+		this.adaptorTo = adaptorTo;
+	}
+
+	
 	
 	
 	

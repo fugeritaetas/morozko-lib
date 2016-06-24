@@ -62,6 +62,7 @@ public interface TableBackup {
 	public static final String PROP_STATEMENT_MODE = "statement-mode";
 	public static final String PROP_STATEMENT_MODE_BATCH = "batch";
 	public static final String PROP_STATEMENT_MODE_EXECUTE = "execute";
+	public static final String PROP_STATEMENT_MODE_SINGLE = "single";
 	
 	/**
 	 * Proprietà che governa la modalità di inserimento tra la tabella destinazione e quella di origine.
@@ -107,7 +108,7 @@ public interface TableBackup {
      *                          che non permette neanche di iniziare
      *                          il backup dei dati
      */    
-    public int backupTable(String table, Connection from, Connection to) throws SQLException; 
+    public int backupTable(String table, Connection from, Connection to, TableConfig tableConfig ) throws SQLException; 
     
     /**
      * <p>Fa il backup di una tabella da un db ad un altro db.</p>
@@ -124,6 +125,8 @@ public interface TableBackup {
      *                          che non permette neanche di iniziare
      *                          il backup dei dati
      */
-    public int backupTable(String table, Connection from, Connection to, String select) throws SQLException ;
+    public int backupTable(String table, Connection from, Connection to, String select, TableConfig tableConfig ) throws SQLException ;
     
+    
+
 }

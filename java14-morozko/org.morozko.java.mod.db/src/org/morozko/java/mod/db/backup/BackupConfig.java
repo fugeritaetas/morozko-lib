@@ -28,8 +28,10 @@ package org.morozko.java.mod.db.backup;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.morozko.java.core.cfg.ConfigException;
@@ -64,6 +66,10 @@ public class BackupConfig extends XMLConfigurableObject {
 		this.sequenceList = new ArrayList();
 		this.preSqlToList = new ArrayList();
 		this.postSqlToList = new ArrayList();
+		this.preSqlFromList = new ArrayList();
+		this.postSqlFromList = new ArrayList();
+		this.adaptorMap = new HashMap(); 
+		
 	}
 	
 	private CfConfig cfConfig;
@@ -76,6 +82,8 @@ public class BackupConfig extends XMLConfigurableObject {
 		this.cfConfig = cfConfig;
 	}
 
+	private Map adaptorMap;
+	
 	private Properties generalProperties;
 	
 	private TableBackup tableBackup;
@@ -91,6 +99,16 @@ public class BackupConfig extends XMLConfigurableObject {
 	private List preSqlToList;
 	
 	private List postSqlToList;
+	
+	private List preSqlFromList;
+	
+	private List postSqlFromList;
+
+	
+	
+	public Map getAdaptorMap() {
+		return adaptorMap;
+	}
 
 	private static void popoulateSqlList( SearchDOM searchDOM, Element tag, List list ) {
 		if ( tag != null ) {
@@ -139,6 +157,8 @@ public class BackupConfig extends XMLConfigurableObject {
 			
 			this.sequenceList.clear();
 			
+			this.adaptorMap.clear();
+			
 			Element backupConfig = searchDOM.findTag( config , "backup-config" );
 			Properties props = DOMUtils.attributesToProperties( backupConfig );
 			
@@ -174,6 +194,21 @@ public class BackupConfig extends XMLConfigurableObject {
 			Element factoryToTag = searchDOM.findTag( backupConfig , "cf-to-config" );
 			this.factoryTo = configureConnectionFactory( factoryToTag, this.getCfConfig(), "to" );
 			
+			
+			Element adaptorListTag = searchDOM.findTag( backupConfig , "adaptor-list" );
+			if ( adaptorListTag != null ) {
+				List adaptorTags = searchDOM.findAllTags( adaptorListTag , "adaptor" );
+				for ( int k=0; k<adaptorTags.size(); k++ ) {
+					Element currentTag = (Element)adaptorTags.get( k );
+					String idAdatpor = currentTag.getAttribute( "id" );
+					String typeAdatpor = currentTag.getAttribute( "type" );
+					BackupAdaptor adaptor = (BackupAdaptor)ClassHelper.newInstance( typeAdatpor );
+					this.adaptorMap.put( idAdatpor , adaptor );
+					adaptor.configure( currentTag );
+				}
+			}
+			
+			
 			Element sequenceListTag = searchDOM.findTag( backupConfig , "sequence-list" );
 			if ( sequenceListTag != null ) {
 				List sequenceTags = searchDOM.findAllTags( sequenceListTag , "sequence" );
@@ -187,11 +222,17 @@ public class BackupConfig extends XMLConfigurableObject {
 				}
 			}
 			
-			
+			// execute on destination connection before and post
 			Element preSqlToTag = searchDOM.findTag( backupConfig , "pre-sql-to" );
 			popoulateSqlList( searchDOM , preSqlToTag, this.preSqlToList );
 			Element postSqlToTag = searchDOM.findTag( backupConfig , "post-sql-to" );
 			popoulateSqlList( searchDOM , postSqlToTag, this.postSqlToList );
+
+			// execute on source connection before and post
+			Element preSqlFromTag = searchDOM.findTag( backupConfig , "pre-sql-from" );
+			popoulateSqlList( searchDOM , preSqlFromTag, this.preSqlFromList );
+			Element postSqlFromTag = searchDOM.findTag( backupConfig , "post-sql-from" );
+			popoulateSqlList( searchDOM , postSqlFromTag, this.postSqlFromList );
 			
 			
 			Element tableListTag = searchDOM.findTag( backupConfig , "table-list" );
@@ -214,7 +255,16 @@ public class BackupConfig extends XMLConfigurableObject {
 				tableConfig.setSelect( select );
 				String meta = tableAtts.getProperty( "meta" );
 				tableConfig.setMeta( meta );
+				String adaptorFrom = tableAtts.getProperty( "adaptor-from" );
+				String adaptorTo = tableAtts.getProperty( "adaptor-to" );
+				if ( adaptorFrom != null ) {
+					tableConfig.setAdaptorFrom( (BackupAdaptor)this.getAdaptorMap().get( adaptorFrom ) );
+				}
+				if ( adaptorTo != null ) {
+					tableConfig.setAdaptorTo( (BackupAdaptor)this.getAdaptorMap().get( adaptorTo ) );
+				}
 				this.tableList.add( tableConfig );
+				
 				//System.out.println( "END ITERATE" );
 			}
 			
@@ -287,7 +337,17 @@ public class BackupConfig extends XMLConfigurableObject {
 
 	public List getPostSqlToList() {
 		return postSqlToList;
+	}
+
+	public List getPreSqlFromList() {
+		return preSqlFromList;
+	}
+
+	public List getPostSqlFromList() {
+		return postSqlFromList;
 	}	
+	
+	
 	
 	
 	

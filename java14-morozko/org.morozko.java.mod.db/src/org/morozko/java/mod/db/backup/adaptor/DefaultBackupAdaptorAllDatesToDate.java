@@ -23,10 +23,11 @@
  * @creation   : 25/set/06
  * @license	   : META-INF/LICENSE.TXT
  */
-package org.morozko.java.mod.db.backup;
+package org.morozko.java.mod.db.backup.adaptor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,6 +38,7 @@ import java.sql.Types;
 
 import org.morozko.java.core.io.StreamIO;
 import org.morozko.java.core.log.BasicLogObject;
+import org.morozko.java.mod.db.backup.BackupAdaptor;
 import org.w3c.dom.Element;
 
 /**
@@ -45,13 +47,7 @@ import org.w3c.dom.Element;
  * @author mfranci
  *
  */
-public class DefaultBackupAdaptor extends BasicLogObject implements BackupAdaptor {
-
-	public static final DefaultBackupAdaptor DEFAULT = new DefaultBackupAdaptor();
-	
-	public void configure(Element config) throws Exception {
-		
-	}
+public class DefaultBackupAdaptorAllDatesToDate extends BasicLogObject implements BackupAdaptor {
 
 	/* (non-Javadoc)
 	 * @see org.morozko.java.mod.db.backup.BackupAdaptor#get(java.sql.ResultSet, java.sql.ResultSetMetaData, int)
@@ -74,7 +70,7 @@ public class DefaultBackupAdaptor extends BasicLogObject implements BackupAdapto
 		this.getLog().debug( "DefaultBackupAdaptor>>> SETTING TYPE : "+rsmd.getColumnName( index ) );
 		if (  obj == null ) {
 			ps.setNull( index , type );
-		} else if (type==Types.DATE) {
+		} else if (type==Types.DATE || type==Types.TIME || type == Types.TIMESTAMP)  {
 	        ps.setDate( index , (Date)obj );
 		 } else if (type==Types.BLOB) {
 			Blob b = (Blob)obj;
@@ -88,6 +84,9 @@ public class DefaultBackupAdaptor extends BasicLogObject implements BackupAdapto
 	     } else {
 	    	ps.setObject( index , obj );
 	     }
+	}
+
+	public void configure(Element config) throws Exception {
 	}
 
 }

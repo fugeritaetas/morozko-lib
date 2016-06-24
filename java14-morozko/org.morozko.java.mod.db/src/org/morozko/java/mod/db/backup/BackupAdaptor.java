@@ -30,6 +30,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import org.w3c.dom.Element;
+
 /**
  * <p></p>
  *
@@ -41,5 +43,7 @@ public interface BackupAdaptor {
 	public void set( PreparedStatement ps, ResultSetMetaData rsmd, Object obj, int index ) throws SQLException;
 	
 	public Object get( ResultSet rs, ResultSetMetaData rsmd, int index ) throws SQLException;
+	
+	public void configure( Element config ) throws Exception;
 	
 }

@@ -297,21 +297,6 @@ public class DocFacade {
 			File outputDir = new File( list.findArgValue( "output-dir" ) );
 			
 			
-			System.getProperties().put("http.proxyHost", "proxysogei.sogei.it");
-			System.getProperties().put("http.proxyPort", "8080");
-			System.getProperties().put("http.proxyUser", "DOMUS\\mttfranci");
-			System.getProperties().put("http.proxyPassword", "Dicembre2013");
-			
-			
-			
-			Transformer t = TransformerXML.newTransformer();
-			t.setOutputProperty( OutputKeys.INDENT , "no" );
-			t.setOutputProperty( OutputKeys.METHOD , "xml" );
-			t.setOutputProperty( OutputKeys.METHOD , "xml" );
-			t.transform( new StreamSource( file ) , new StreamResult( new File( outputDir, "test.xml" ) ) );
-			
-			System.out.println( "TRANSFORM DONE ! " );
-			
 			String format = list.findArgValue( "format" );
 			
 			InputStream is = new FileInputStream( file  );
@@ -326,12 +311,12 @@ public class DocFacade {
 				
 				DocBase docBase = parse( is );
 				
-				MemoryCounter m = new MemoryCounter();
-				System.out.println( "SIZE "+m.estimate( docBase )/1000/1000 );
-				
-				System.out.println( "PARSE DONE ! "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000 );
-				Runtime.getRuntime().gc();
-				System.out.println( "GC DONE ! "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000 );
+//				MemoryCounter m = new MemoryCounter();
+//				System.out.println( "SIZE "+m.estimate( docBase )/1000/1000 );
+//				
+//				System.out.println( "PARSE DONE ! "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000 );
+//				Runtime.getRuntime().gc();
+//				System.out.println( "GC DONE ! "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000 );
 				
 				
 				if ( "xls".equalsIgnoreCase( format ) ) {

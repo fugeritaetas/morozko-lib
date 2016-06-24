@@ -39,6 +39,7 @@ import org.morozko.java.mod.cmd.helpers.BufferedCMD;
 import org.morozko.java.mod.cmd.helpers.PaddedCMDOutput;
 import org.morozko.java.mod.db.cmd.sql.SQLCMDUtils;
 import org.morozko.java.mod.db.connect.ConnectionFactory;
+import org.morozko.java.mod.db.sql.ScriptFacade;
 import org.morozko.java.mod.tools.ToolUtils;
 import org.morozko.java.mod.tools.db.ConnArgs;
 import org.morozko.java.mod.tools.util.args.ArgList;
@@ -56,7 +57,7 @@ import org.morozko.java.core.log.LogFacade;
  */
 public class JSQL {
     
-    public static final String VERSION = "0.1.5 (2013-09-30)";
+    public static final String VERSION = "0.1.8 (2016-04-20)";
     
     private static void printInfo() {
         ToolUtils.printInfo("JSQL v. "+VERSION, "Matteo Franci a.k.a Morozko");
@@ -83,6 +84,10 @@ public class JSQL {
             String execute = list.findArgValue( "e" );
             
             String file = list.findArgValue( "f" );
+            
+            String scriptFile = list.findArgValue( "s" );
+            
+            System.out.println( "SCRIPT FILE : '"+scriptFile+"'" );
             
             String fileOutput = list.findArgValue( "o" );
             
@@ -124,7 +129,7 @@ public class JSQL {
             	format = new BufferedOutputFormat( format );
             }
             
-            if ( execute == null && file == null ) {
+            if ( execute == null && file == null && scriptFile == null ) {
             	 printInfo();
             	 CMDPrompt prompt = new CMDPrompt( LineIOUtils.createLineReader( System.in ), writer, cmd, ">>", format );
             	 System.out.println("\\? - help");
@@ -139,6 +144,15 @@ public class JSQL {
             } else if ( file != null ) {
             	printInfo();
             	format( format, cmd.handleCommand( FileIO.readString( new File( file ) ) ), b );
+            } else if ( scriptFile != null ) {
+            	File sf = new File( scriptFile );
+            	System.out.println( "EXISTS? "+sf.exists()+" '"+sf.getCanonicalPath()+"'" ); 
+            	String text = FileIO.readString( sf );
+            	String[] sql = ScriptFacade.parseScript( text );
+            	for ( int k=0; k<sql.length; k++ ) {
+            		System.out.println( "executing : "+sql[k] );
+            		format( format, cmd.handleCommand( sql[k] ), b );
+            	}
             }
             
         } catch (Exception e) {
@@ -149,6 +163,7 @@ public class JSQL {
             System.err.println("      -p  [password] ");
             System.err.println("      -e  [command-to-execute] ");
             System.err.println("      -f  [execute-file] ");
+            System.err.println("      -s  [execute-script] (comma separated sql statement, unsafe) ");
             System.err.println("      -o  [output-file] ");
             System.err.println("      -b  [padded|on|off] ");
             System.err.println("      -t  [table|csv] ");
