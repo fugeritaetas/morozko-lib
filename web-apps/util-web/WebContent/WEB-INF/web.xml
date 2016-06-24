@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>util-web</display-name>
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>UtilityServlet</display-name>
+		<servlet-name>UtilityServlet</servlet-name>
+		<servlet-class>util.UtilityServlet</servlet-class>
+		<init-param>
+			<param-name>maxPostSize</param-name>
+			<param-value>10000000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>filterHost</param-name>
+			<param-value></param-value>
+		</init-param>		
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UtilityServlet</servlet-name>
+		<url-pattern>/fs/*</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<security-role>
+		<role-name>manager</role-name>
+	</security-role>
+	
+	<security-constraint>
+		<display-name>admin_users</display-name>
+		<web-resource-collection>
+			<web-resource-name>admin_users</web-resource-name>
+			<url-pattern>/fs/*</url-pattern>					
+			<http-method>GET</http-method>
+			<http-method>PUT</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>POST</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>OPTIONS</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>admin_users</description>
+			<role-name>manager</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>		
+	
+</web-app>

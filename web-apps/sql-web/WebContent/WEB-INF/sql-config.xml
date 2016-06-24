@@ -1,0 +1,15 @@
+<sql-config>
+
+	<query name="lista_utenti" description="Elenco utenti" type="query">
+		<sql>
+			SELECT * FROM user
+		</sql>
+	</query>
+	
+	<query name="lista_utent" description="Elenco utenti" type="query">
+		<sql>
+			SELECT * FROM user
+		</sql>
+	</query>	
+
+</sql-config>

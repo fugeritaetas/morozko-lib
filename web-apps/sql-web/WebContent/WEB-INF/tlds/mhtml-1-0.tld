@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<!--+
+	|	/*
+	|	 * @(#)mhtml-1-0.tld
+	|	 *
+	|	 * @author	   : morozko
+	|	 */
+	|
+	| Definizione di una tag library per compiere operazioni logiche di uguaglianza,
+	| minoranza e maggioranza tra bean.
+	|
+	+-->
+
+<taglib>
+<tlibversion>1.2</tlibversion>
+<jspversion>1.1</jspversion>
+<shortname>mhtml</shortname>
+<uri>http://www.morozko.org/data/java/core/ent/tld/mhtml-1-0.tld</uri>
+
+<!-- TAG : img  -->
+<tag>
+<name>img</name>
+<tagclass>org.morozko.java.core.ent.tld.html.ImgTag</tagclass>
+<bodycontent>JSP</bodycontent>
+<attribute>
+<name>src</name>
+<required>true</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>border</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>webapp</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+</tag>
+
+</taglib>

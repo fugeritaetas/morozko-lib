@@ -1,0 +1,7 @@
+<Context>
+
+  <ResourceLink name="config/sqlconfig"
+            global="config/sqlconfig"
+            type="java.lang.String"/>
+
+</Context>

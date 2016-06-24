@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<!--+
+    |
+    |  /*
+    |   * @(#)build.xml
+    |   *
+    |   * @module      : org.morozko.java.mod.navmap
+    |   * @version     : 0.1.1
+    |   * @author      : Morozko
+    |   * @date        : 2007.07.13
+    |   */
+    |
+    +-->
+
+<project name="util-web" default="dist">
+
+	<property name="module.name" value="${ant.project.name}"/>
+    <property name="dir.classes" value="build/classes"/>
+    <property name="dir.dist" value="dist"/>
+	
+    <target name="dist" description="Creo il jar generico per la distribuzione">
+    	<delete file="${dir.dist}"/>	
+    	<mkdir dir="${dir.dist}"/>
+		<jar jarfile="${dir.dist}/${module.name}.jar"
+        	basedir="${dir.classes}"/>  	
+    </target> 
+
+</project>
