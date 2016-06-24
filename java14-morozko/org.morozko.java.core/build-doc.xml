@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!--+
+    |
+    |  /*
+    |   * @(#)build.xml
+    |   *
+    |   * @module      : org.morozko.java.core
+    |   * @version     : 0.1.1
+    |   * @author      : Morozko
+    |   * @date        : 2007.07.13
+    |   */
+    |
+    +-->
+
+<project name="mj-core-doc" default="dist">
+
+	  <property name="dist.dir" value="dist/javadoc"/>
+	
+	  <target name="dist" depends="jdoc">
+	  </target>
+	
+	  <target name="jdoc">
+	    <delete dir="${dist.dir}"/>
+	    <mkdir dir="${dist.dir}"/>
+	  	<javadoc
+	  			overview="src/overview.html"
+	  			stylesheetfile="../javalibs/extra/javadoc/style.css"
+	  			author="true"
+	  	    	access="protected"
+	  		    doctitle="Fugerit JLIB Core - General purpose library"
+	  			windowtitle="Fugerit JLIB Core - General purpose library"
+	  			sourcepath="src/" 
+	  			destdir="${dist.dir}">
+	  	</javadoc>
+	  </target>
+
+</project>

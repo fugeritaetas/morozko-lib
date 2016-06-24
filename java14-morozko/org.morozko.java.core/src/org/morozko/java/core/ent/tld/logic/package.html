@@ -1,0 +1,118 @@
+<html>
+	<body>
+		<h3>Tag library personalizzata per gestire comparazione 
+		e altre operazioni all' interno di pagine JSP (oilogic).</h3>
+		<br/>
+		
+		<table class="tldapi">
+			<tr>
+				<th>Tag</th>
+				<th>Descrizione</th>				
+			</tr>
+			<tr>
+				<td><a href="#compare">compare</a></td>
+				<td>Test di uguaglianza tra due bean.</td>
+			</tr>
+			<tr>
+				<td><a href="#compareNot">compareNot</a></td>
+				<td>Test di non uguaglianza tra due bean.</td>
+			</tr>		
+			<tr>
+				<td><a href="#greaterThan">greaterThan</a></td>
+				<td>Verifica se di due bean che rappresentano un valore numerico, il primo è maggiore del secondo.</td>
+			</tr>					
+			<tr>
+				<td><a href="#greaterEqual">greaterEqual</a></td>
+				<td>Verifica se di due bean che rappresentano un valore numerico, il primo è maggiore  o uguale al secondo.</td>
+			</tr>	
+			<tr>
+				<td><a href="#lesserThan">lesserThan</a></td>
+				<td>Verifica se di due bean che rappresentano un valore numerico, il primo è minore del secondo.</td>
+			</tr>										
+			<tr>
+				<td><a href="#lesserEqual">lesserEqual</a></td>
+				<td>Verifica se di due bean che rappresentano un valore numerico, il primo è minore o uguale al secondo.</td>
+			</tr>											
+		</table>
+		
+		<br/>
+		<br/>
+		<br/>
+		
+		<a name="compare"/>
+		
+		<h4>Tag : ompare</h4>
+		
+	<p>Tag che esegue il codice in esso contenuto solo se il risultato della comparazione tra due oggetti restituisce <code>true</code>.</p>
+
+		Ad esempio il seguente estratto di codice : <br/>
+ 		<div class="codejsp"> 
+ 			&lt;oilogic:compare name='bean' nameTo='beanTo'&gt;<br/>
+ 				TEST
+ 			&lt;/oilogic:compare name='bean' nameTo='beanTo'&gt;<br/>
+ 		</div>
+ 		<br/>
+ 		<br/>
+ 		E' equivalente a scrivere in una pagina JSP :<br/>
+ 		<div class="codejsp">
+ 			&lt;%<br/>
+ 				&nbsp;&nbsp; Object obj1 = this.pageContext.findAttribute( "bean" );<br/>
+  				&nbsp;&nbsp; Object obj2 = this.pageContext.findAttribute( "beanTo" );<br/>
+ 				&nbsp;&nbsp; if ( obj1.equals( obj2 ) ) {;<br/>
+ 				&nbsp;&nbsp;&nbsp; out.print( "TEST" );<br/>
+ 				&nbsp;&nbsp; }<br/>
+ 			%&gt;<br/>
+ 		</div>
+ 
+		<table class="tldapi">
+			<tr>
+				<th colspan="2">compare</th>			
+			</tr>	
+			<tr>
+				<th colspan="1">attributo</th>		
+				<th colspan="1">descrizione</th>
+			</tr>	
+			<tr>
+				<td>name</td>		
+				<td>
+					Il bean che viene utilizzato come primo membro della comparazione.
+					<br/>
+					[REQUIRED]
+				</td>
+			</tr>	
+			<tr>
+				<td>property</td>		
+				<td>
+					La proprietà del bean identificato dall' attributo name che viene utilizzata per
+					ottenere il primo membro della comparazione.
+					Se questo attributo non viene specificato il bean stesso viene utilizzato.
+				</td>
+			</tr>				
+			<tr>
+				<td>nameTo</td>		
+				<td>
+					Il bean che viene utilizzato come secondo membro della comparazione.
+					<br/>
+					[REQUIRED]
+				</td>
+			</tr>	
+			<tr>
+				<td>propertyTo</td>		
+				<td>
+					La proprietà del bean identificato dall' attributo nameTo che viene utilizzata per
+					ottenere il secondo membro della comparazione.
+					Se questo attributo non viene specificato il bean stesso viene utilizzato.
+				</td>
+			</tr>			
+			<tr>
+				<td>compareString</td>		
+				<td>
+					Questo attributo indica se prima di essere comparati, i due bean vadano trasformati in 
+					stringhe ( String.valueOf() ).
+					[true|false]
+				</td>
+			</tr>																											
+		</table>			
+		
+	</body>
+</html>
