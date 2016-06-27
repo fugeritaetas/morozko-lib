@@ -13,6 +13,10 @@ import java.util.Map;
  */
 public interface PagedResult<T> {
 
+	/*
+	 * Result code
+	 */
+	
 	public static final int RESULT_CODE_OK = 0;
 	
 	public static final int RESULT_CODE_KO = -1;
