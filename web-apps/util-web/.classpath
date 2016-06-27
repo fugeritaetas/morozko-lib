@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-web.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -15,5 +13,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-db.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

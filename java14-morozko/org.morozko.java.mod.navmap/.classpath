@@ -4,7 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.mod.web"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen-helpers.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-daogen-helpers.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

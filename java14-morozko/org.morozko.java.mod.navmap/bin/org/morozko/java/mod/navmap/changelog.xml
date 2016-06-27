@@ -1,0 +1,9 @@
+
+<change-log project="org.opinf.jlib.mod.navmap" label="NAVMAP">
+	<version id="0.9.5" date="2006-06-">		
+		<log type="feature" priority="2">
+			Aggiunta la possibilità di processare le nav-node attraverso
+			plugin esterni (NavHandler).
+		</log>					
+	</version>
+</change-log>

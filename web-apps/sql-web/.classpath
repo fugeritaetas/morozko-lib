@@ -13,8 +13,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-db.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-web.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-web.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

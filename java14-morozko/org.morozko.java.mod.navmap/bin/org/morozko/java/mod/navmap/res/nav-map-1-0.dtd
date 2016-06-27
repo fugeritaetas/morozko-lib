@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	/*
+	 * @(#)nav-map-1-0.dtd
+	 *
+	 * @project    : org.opinf.jlib.mod.navmap
+	 * @package    : org.opinf.jlib.mod.navmap.res
+	 * @creation   : 13-apr-2006
+	 *
+	 * DTD per la configurazione della libreria NAV-MAP
+	 */
+
+	<!DOCTYPE nav-map SYSTEM "http://www.morozko.org/data/java/mod/nav-map/dtd/nav-map-1-0.dtd">
+       
+-->
+
+<!ENTITY % Boolean "( true | false )">
+
+<!ELEMENT nav-map ( nav-map-config, nav-handler-list?, nav-module-list?, nav-entry-list, nav-menu-list, nav-tree, nav-node-default? )>
+
+<!ELEMENT nav-map-config EMPTY>
+<!ATTLIST nav-map-config bundle CDATA #REQUIRED>
+<!ATTLIST nav-map-config keep-path %Boolean; #IMPLIED> <!-- default : false -->
+
+<!ELEMENT nav-handler-list ( nav-handler* )>
+<!ELEMENT nav-handler EMPTY>
+<!ATTLIST nav-handler name CDATA #REQUIRED>
+<!ATTLIST nav-handler type CDATA #REQUIRED>
+
+<!ELEMENT nav-module-list ( nav-module* )>
+<!ELEMENT nav-module EMPTY>
+<!ATTLIST nav-module name CDATA #REQUIRED>
+<!ATTLIST nav-module type CDATA #REQUIRED>
+<!ATTLIST nav-module config CDATA #REQUIRED>
+<!ATTLIST nav-module home CDATA #IMPLIED>
+
+<!ELEMENT nav-entry-list ( nav-entry*, nav-alias*, nav-switch* )>
+
+<!ELEMENT nav-entry EMPTY>
+<!ATTLIST nav-entry name CDATA #REQUIRED>
+<!ATTLIST nav-entry module CDATA #IMPLIED>
+<!ATTLIST nav-entry absolute %Boolean; #IMPLIED>	<!-- default : false -->
+<!ATTLIST nav-entry display CDATA #REQUIRED>
+<!ATTLIST nav-entry title CDATA #IMPLIED>
+<!ATTLIST nav-entry label CDATA #IMPLIED>
+<!ATTLIST nav-entry context CDATA #IMPLIED>
+<!ATTLIST nav-entry auth CDATA #IMPLIED>
+<!ATTLIST nav-entry link CDATA #IMPLIED>
+<!ATTLIST nav-entry target CDATA #IMPLIED>
+<!ATTLIST nav-entry renderLink %Boolean; #IMPLIED>		<!-- default : true -->
+<!ATTLIST nav-entry handler CDATA #IMPLIED>
+
+<!ELEMENT nav-alias EMPTY>
+<!ATTLIST nav-alias name CDATA #REQUIRED>
+<!ATTLIST nav-alias module CDATA #IMPLIED>
+<!ATTLIST nav-alias nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-alias nav-module CDATA #IMPLIED>
+<!ATTLIST nav-alias display CDATA #IMPLIED>
+<!ATTLIST nav-alias title CDATA #IMPLIED>
+<!ATTLIST nav-alias context CDATA #IMPLIED>
+<!ATTLIST nav-alias auth CDATA #IMPLIED>
+<!ATTLIST nav-alias renderLink %Boolean; #IMPLIED>
+
+<!ELEMENT nav-switch ( nav-switch-key* )>
+<!ATTLIST nav-switch name CDATA #REQUIRED>
+<!ATTLIST nav-switch module CDATA #IMPLIED>
+<!ATTLIST nav-switch nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-switch nav-module CDATA #IMPLIED>
+
+<!ELEMENT nav-switch-key EMPTY>
+<!ATTLIST nav-switch-key key CDATA #REQUIRED>
+<!ATTLIST nav-switch-key nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-switch-key nav-module CDATA #IMPLIED>
+
+<!ELEMENT nav-menu-list ( nav-menu* )>
+
+<!ELEMENT nav-menu ( nav-menu-item | nav-menu-section )*>
+<!ATTLIST nav-menu name CDATA #REQUIRED>
+
+<!ELEMENT nav-menu-item EMPTY>
+<!ATTLIST nav-menu-item nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-menu-item nav-module CDATA #IMPLIED>
+<!ATTLIST nav-menu-item auth CDATA #IMPLIED>
+<!ATTLIST nav-menu-item display CDATA #IMPLIED>
+<!ATTLIST nav-menu-item title CDATA #IMPLIED>
+<!ATTLIST nav-menu-item renderLink %Boolean; #IMPLIED>
+
+<!ELEMENT nav-menu-section ( nav-menu-item )*>
+<!ATTLIST nav-menu-section name CDATA #REQUIRED>
+<!ATTLIST nav-menu-section nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-menu-section nav-module CDATA #IMPLIED>
+
+<!ELEMENT nav-tree ( nav-node+ )>
+
+<!ELEMENT nav-node ( nav-node* ) >
+<!ATTLIST nav-node nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-node nav-module CDATA #IMPLIED>
+<!ATTLIST nav-node menu-1 CDATA #IMPLIED>
+<!ATTLIST nav-node menu-2 CDATA #IMPLIED>
+<!ATTLIST nav-node menu-3 CDATA #IMPLIED>
+<!ATTLIST nav-node menu-4 CDATA #IMPLIED>
+<!ATTLIST nav-node menu-5 CDATA #IMPLIED>
+<!ATTLIST nav-node path %Boolean; #IMPLIED>
+
+<!ELEMENT nav-node-default EMPTY>
+<!ATTLIST nav-node-default nav-entry CDATA #REQUIRED>
+<!ATTLIST nav-node-default nav-module CDATA #IMPLIED>
