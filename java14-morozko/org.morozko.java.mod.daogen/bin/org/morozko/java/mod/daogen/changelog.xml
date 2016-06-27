@@ -1,0 +1,58 @@
+
+<change-log project="org.opinf.jlib.mod.daogen" label="DAOGEN2">
+	<version id="1.9.14" date="2006-06-">
+		<log type="note" priority="1">
+			Eliminata completamente la vecchia interfaccia di generazione del codice.
+		</log>			
+		<log type="feature" priority="2">
+			Aggiunto un nuovo tool per eseguire il dump di una configurazione a partire dal DB.
+		</log>				
+		<log type="feature" priority="2">
+			Possibilità di definire delle query personalizzate nelle relazioni, attraverso il nuovo
+			tag relation-sql, figlio di relation.
+		</log>			
+		<log type="feature" priority="2">
+			Aggiunte property di default (alcune property definite nel file daogen.properties vengono ora lette
+			da un file di configurazion di default se non definite, il file si trova in 
+			org.opinf.jlib.mod.daogen.gen.config.daogen.properties).
+		</log>		
+		<log type="feature" priority="5">
+			Aggiunto metodo loadAll() generico che non prende nessun argomento e restituisce la lista di tutti gli oggetti.
+		</log>	
+		<log type="feature" priority="2">
+			Supporto per gli alias (un campo non facente parte della tabella si comporta esettamente come un altro già definito)
+		</log>		
+	</version>
+	<version id="1.9.13" date="2006-05-01">
+		<log type="feature" priority="4">
+			Limitato supporto per la generazione di metodi di caricamento.
+		</log>		
+		<log type="feature" priority="3">
+			Permesso l'ordinamento nelle relazionie (aggiunto attributo order-by).
+		</log>	
+		<log type="bugfix" priority="3">
+			Era possibile definire solo relazioni che si basassero su campi che avessero lo stesso nome.
+			Ora è possibile anche definire relazioni tra campi che non abbiano lo stesso nome
+			(aggiunto attributo field-out, se non specificato uguale a field).
+		</log>
+	</version>
+	<version id="1.9.12" date="2006-04-27">
+		<log type="feature" priority="4">
+			Nelle releazioni permesso il caricamento in cascata (aggiunto attributo cascade).
+			Nota : Attenti ai cicli.
+		</log>		
+		<log type="feature" priority="3">
+			Permesso l'ordinamento nelle relazionie (aggiunto attributo order-by).
+		</log>	
+		<log type="bugfix" priority="3">
+			Era possibile definire solo relazioni che si basassero su campi che avessero lo stesso nome.
+			Ora è possibile anche definire relazioni tra campi che non abbiano lo stesso nome
+			(aggiunto attributo field-out, se non specificato uguale a field).
+		</log>
+	</version>
+	<version id="1.9.11" date="2006-04-26">
+		<log type="bugfix" priority="1">
+			Correzione di un bug che non faceva estrarre correttamente colonne di tipo BIGINT.
+		</log>
+	</version>
+</change-log>

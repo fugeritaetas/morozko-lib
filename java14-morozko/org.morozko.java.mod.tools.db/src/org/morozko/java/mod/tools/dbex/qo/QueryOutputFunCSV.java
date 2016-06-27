@@ -3,7 +3,7 @@ package org.morozko.java.mod.tools.dbex.qo;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVWriter;
 
 
 public class QueryOutputFunCSV extends QueryOutputFun {

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+<tlibversion>1.2</tlibversion>
+<jspversion>1.1</jspversion>
+<shortname>navmap</shortname>
+<uri>http://www.morozko.org/data/java/mod/nav-map/tld/navmap-1-0.tld</uri>
+
+<!-- TAG : define  -->
+<tag>
+	<name>getNode</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavNodeGet</tagclass>
+	<bodycontent>empty</bodycontent>
+	<attribute>
+		<name>id</name>
+		<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>name</name>
+		<required>false</required>	
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>navEntry</name>
+		<required>false</required>	
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>navModule</name>
+		<required>false</required>	
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+</tag>
+
+<!-- TAG : backurl  -->
+<tag>
+<name>backurl</name>
+<tagclass>org.morozko.java.mod.navmap.tld.NavPathBackUrl</tagclass>
+<bodycontent>empty</bodycontent>
+<attribute>
+<name>id</name>
+<required>true</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleClass</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleId</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+</tag>
+
+<!-- TAG : link  -->
+<tag>
+<name>link</name>
+<tagclass>org.morozko.java.mod.navmap.tld.NavEntryLink</tagclass>
+<bodycontent>empty</bodycontent>
+<attribute>
+<name>name</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>navEntry</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>navModule</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleClass</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleId</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>target</name>
+<required>false</required>
+<rtexprvalue>false</rtexprvalue>
+</attribute>
+<attribute>
+<name>parameter</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+</tag>
+
+
+<!-- TAG : define  -->
+<tag>
+	<name>define</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryDefine</tagclass>
+	<bodycontent>empty</bodycontent>
+	<attribute>
+		<name>id</name>
+		<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navEntry</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navModule</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	 <attribute>
+		<name>styleClass</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>styleId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+
+<!-- TAG : display  -->
+<tag>
+	<name>display</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryDisplay</tagclass>
+	<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navEntry</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navModule</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	<attribute>
+		<name>styleClass</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>styleId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+
+
+<!-- TAG : title  -->
+<tag>
+	<name>title</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryTitle</tagclass>
+	<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navEntry</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navModule</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	<attribute>
+		<name>styleClass</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>styleId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+
+
+<!-- TAG : label  -->
+<tag>
+	<name>label</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryLabel</tagclass>
+	<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navEntry</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navModule</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	<attribute>
+		<name>styleClass</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>styleId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+
+<!-- TAG : auth  -->
+<tag>
+	<name>auth</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryAuth</tagclass>
+	<bodycontent>empty</bodycontent>
+	<attribute>
+		<name>auth</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>authName</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>authProperty</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>navEntry</name>
+		<required>false</required>	
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>navModule</name>
+		<required>false</required>	
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>id</name>
+		<required>true</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>toScope</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>	
+</tag>
+
+
+<!-- TAG : url  -->
+<tag>
+	<name>url</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavEntryUrl</tagclass>
+	<bodycontent>empty</bodycontent>
+	<attribute>
+		<name>excludeParams</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+			<name>navEntry</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>navModule</name>
+			<required>false</required>	
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	<attribute>
+		<name>styleClass</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>styleId</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>parameter</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>	
+</tag>
+<tag>
+	<name>isCurrentNode</name>
+	<tagclass>org.morozko.java.mod.navmap.tld.NavNodeIsCurrent</tagclass>
+	<bodycontent>empty</bodycontent>
+	<attribute>
+		<name>name</name>
+		<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>id</name>
+		<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+	</attribute>	
+</tag>
+</taglib>

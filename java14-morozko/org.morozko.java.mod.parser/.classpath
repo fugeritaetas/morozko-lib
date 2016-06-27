@@ -2,9 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools.jar"/>
-	<classpathentry kind="lib" path="/javalibs/misc/csv/javacsv2.0/javacsv.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/csv/javacsv/2_1/javacsv.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-tools-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

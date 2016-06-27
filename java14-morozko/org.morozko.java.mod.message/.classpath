@@ -2,20 +2,22 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-core.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/activation.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-cmd.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-daogen-helpers.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-db.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-navmap.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-tools-db.jar"/>
-	<classpathentry kind="lib" path="/javalibs/morozko/mj-mod-web.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/imap.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/mail.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/mailapi.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/pop3.jar"/>
-	<classpathentry kind="lib" path="/javalibs/sun/mail/smtp.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-core.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-ext-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-cmd.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-daogen-helpers.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-daogen.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-dbsrc.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-doc.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-log.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-navmap.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-sync.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-text.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-tools-db.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-tools.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-web.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-ws.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/java/javamail/1_5_5/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
