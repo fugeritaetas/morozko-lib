@@ -1,6 +1,8 @@
 package org.fugerit.java.core.util.result;
 
-import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Inteface for handling paged result 
@@ -9,40 +11,141 @@ import java.util.Collection;
  *
  * @param <E>
  */
-public interface PagedResult<E> {
+public interface PagedResult<T> {
 
+	public static final int RESULT_CODE_OK = 0;
+	
+	public static final int RESULT_CODE_KO = -1;
+	
+	public static final int FIRST_PAGE_INDEX = 1;
+	
 	/**
 	 * The method getElementCount() returns this value if the element count is unavalable
 	 */
 	public final static Integer ELEMENT_COUNT_UNAVAILABLE = -1;
 	
 	/**
-	 * Return the page size
+	 * <p>The position of the first element of the current pages ( (currentPage-1) * perPage )</p> 
 	 * 
-	 * @return
+	 * @return	offset of the first element in this page
+	 */
+	public Integer getOffset();
+	
+	/**
+	 * <p>Maximum number of elements in a page</p>
+	 * 
+	 * @return	maximum number of elements in a page
 	 */
 	public Integer getPerPage();
 
 	/**
-	 * Current page size
+	 * <p>Total number of elements in all pages</p>
 	 * 
-	 * @return
-	 */
-	public Integer getCurrentPageSize();
-	
-	/**
-	 * Total element count
-	 * 
-	 * @return
+	 * @return	total number of elements in all pages
 	 */
 	public Integer getElementCount();
 	
 	/**
-	 * The current page index
+	 * <p>Position of current page ( in the range 1 - n )</p>
+	 * 
+	 * @return	position of current page
+	 */
+	public Integer getCurrentePage();	
+	
+	/**
+	 * <p>Total number of pages</p>
+	 * 
+	 * @return	total number of pages
+	 */
+	public Integer getPageCount();	
+	
+	/**
+	 * <p>Number of elements in current page</p>
+	 * 
+	 * @return	the size of the current page
+	 */
+	public Integer getCurrentPageSize();
+	
+	/**
+	 * <p>Elements in the current page</p>
+	 * 
+	 * @return	elements in the current page
+	 */
+	public Iterator<T> getPageElements();
+
+	/**
+	 * <p>Elements in the current page</p>
+	 * 
+	 * @return	elements in the current page
+	 */
+	public List<T> getPageElementsList();
+	
+	/**
+	 * <p>Iterator over page numbers ( 1 - n )</p>
+	 * 
+	 * @return	iterator over page numbers ( 1 - n )
+	 */
+	public Iterator<Integer> getPageCountIterator();
+	
+	/**
+	 * Result code for this page
 	 * 
 	 * @return
 	 */
-	public Integer getCurrentePage();
+	public int getResultCode();
+	
+	/**
+	 * Additional info of this page.
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> getInfo();
+	
+	
+	/** 
+	 * <code>true</code> if this is the last page.
+	 * 
+	 * @return
+	 */
+	public boolean isLastPage();
+	
+	/** 
+	 * <code>true</code> if this is the last page.
+	 * 
+	 * @return
+	 */
+	public boolean isFirstPage();	
+	
+	
+	// ******* additiona method for virtual paging *******
+	
+	// *******************************************************************************************
+	// *******************************************************************************************
+	// * VIRTUAL PAGING IS A METHOD WHERE A VIRTUAL PAGE IS MAPPED INTO A BIGGER PAGE            *
+	// *******************************************************************************************
+	// *******************************************************************************************
+	
+	/**
+	 * Virtual search key
+	 * 
+	 * @return
+	 */
+	public String getVirtualSearchKey();
+	
+	public Integer getBufferPageSize();
+	
+	public PagedResult<T> getVirtualPage( int currentPage );
+	
+	public boolean isSupportVirtualPaging();
+	
+	
+	// ******* additiona method for full result *******
+	
+	// *******************************************************************************************
+	// *******************************************************************************************
+	// * FULL RESULT IS A METHOD OF ACCESS PAGE WHERE ALL ELEMENTS ARE ACCESSIBLE ONLY ITERATING *
+	// *******************************************************************************************
+	// *******************************************************************************************
 	
 	/**
 	 * <code>true</code> if the the page contains the full result
@@ -50,13 +153,14 @@ public interface PagedResult<E> {
 	 * @return
 	 */
 	public boolean isFullResult();
+
 	
 	/**
-	 * Return the page elements
+	 * Size of current page (within 0 and getPerPage() )
 	 * 
 	 * @return
 	 */
-	public Collection<E> getPageElements();
+	public Integer getCurrentePageSize();
 	
 	
 }
