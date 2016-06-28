@@ -54,7 +54,7 @@ public interface PagedResult<T> {
 	 * 
 	 * @return	position of current page
 	 */
-	public Integer getCurrentePage();	
+	public Integer getCurrentPage();	
 	
 	/**
 	 * <p>Total number of pages</p>
@@ -136,7 +136,9 @@ public interface PagedResult<T> {
 	 */
 	public String getVirtualSearchKey();
 	
-	public Integer getBufferPageSize();
+	public Integer getRealPerPage();
+	
+	public Integer getRealCurrentPage();
 	
 	public PagedResult<T> getVirtualPage( int currentPage );
 	
@@ -158,13 +160,4 @@ public interface PagedResult<T> {
 	 */
 	public boolean isFullResult();
 
-	
-	/**
-	 * Size of current page (within 0 and getPerPage() )
-	 * 
-	 * @return
-	 */
-	public Integer getCurrentePageSize();
-	
-	
 }

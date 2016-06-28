@@ -6,9 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractPagedResult<T> implements PagedResult<T> {
+import org.fugerit.java.core.log.BasicLogObject;
 
-	
+public abstract class AbstractPagedResult<T> extends BasicLogObject implements PagedResult<T> {
+
 	public static final boolean DEFAULT_SUPPORT_VIRTUAL_PAGING = false;
 	
 	private int pageCount;
@@ -151,7 +152,7 @@ public abstract class AbstractPagedResult<T> implements PagedResult<T> {
 	
 	@Override
 	public boolean isFirstPage() {
-		return this.getCurrentePage() == FIRST_PAGE_INDEX;
+		return this.getCurrentPage() == FIRST_PAGE_INDEX;
 	}
 	
 	@Override

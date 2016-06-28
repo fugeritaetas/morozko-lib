@@ -1,9 +1,22 @@
 package org.fugerit.java.core.util.result;
 
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.logging.Level;
 
-public class VirtualPageCache<T> {
+import org.fugerit.java.core.log.BasicLogObject;
 
+public class VirtualPageCache<T> extends BasicLogObject implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6408904239036858385L;
+
+	public VirtualPageCache() {
+		this.cache = new HashMap<String, CacheWrapper<T>>();
+	}
+	
 	private HashMap<String, CacheWrapper<T>> cache;
 	
 	// 12 hours
@@ -14,6 +27,10 @@ public class VirtualPageCache<T> {
 		return wrapper.getCacheTime()>(System.currentTimeMillis()-DEFAULT_TTL);
 	}
 	
+	private String buildPageKey( String virtualKey, int currentPage ) {
+		return virtualKey+";"+currentPage;
+	}
+	
 	/**
 	 * Returns a virtual page contained in the real page.
 	 * 
@@ -21,12 +38,17 @@ public class VirtualPageCache<T> {
 	 * @param currentPage
 	 * @return
 	 */
-	public PagedResult<T> getCachedPage( String virtualKey, Integer currentPage ) {
-		CacheWrapper<T> wrapper = this.cache.get( virtualKey );
+	public PagedResult<T> getCachedPage( VirtualFinder finder ) {
+		int currentPage = finder.getRealCurrentPage();
+		String virtualKey = finder.getSearchVirtualKey();
+		String key = this.buildPageKey(virtualKey, currentPage);
+		CacheWrapper<T> wrapper = this.cache.get( key );
+		this.getLogger().log( Level.FINE, "WRAPPER : "+wrapper );
 		PagedResult<T> page = null;
 		if ( wrapper != null ) {
 			if ( this.checkTtl( wrapper ) ) {
-				page = wrapper.getPage().getVirtualPage( currentPage );
+				page = wrapper.getPage();
+				System.out.println( "PAGE > "+page );
 			} else {
 				this.cache.remove( wrapper );
 			}
@@ -34,8 +56,12 @@ public class VirtualPageCache<T> {
 		return page;
 	}
 	
-	public void addPageToCache( String virtualKey, PagedResult<T> bufferPage ) {
-		this.cache.put( virtualKey , new CacheWrapper<T>( bufferPage ) );
+	public void addPageToCache( PagedResult<T> bufferPage ) {
+		int currentPage = bufferPage.getRealCurrentPage();
+		String virtualKey = bufferPage.getVirtualSearchKey();
+		String key = this.buildPageKey(virtualKey, currentPage);
+		this.getLogger().log( Level.FINE, "ADD TO CACHE : "+key );
+		this.cache.put( key , new CacheWrapper<T>( bufferPage ) );
 	}
 	
 }

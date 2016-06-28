@@ -1,9 +1,22 @@
 package org.fugerit.java.core.util.result;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
 
-public class DefaultPagedResult<T> extends AbstractPagedResult<T> {
+public class DefaultPagedResult<T> extends AbstractPagedResult<T>  implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4104228790597768353L;
+
+	private int realPerPage;
+	
+	private int realCurrentPage;
+	
+	private String virtualKey;
+	
 	/**
 	 * <p>Creates a new paged result</p>
 	 * 
@@ -15,7 +28,22 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T> {
 	 */
 	public static <T> PagedResult<T>  newPagedResult( int perPage, int elementCount, int currentPage, List<T> pageElements ) {
 		int pageCount = calcPageCount( elementCount, perPage );
-		AbstractPagedResult<T> result = new DefaultPagedResult<T>( perPage, elementCount, currentPage, pageCount, pageElements );
+		AbstractPagedResult<T> result = new DefaultPagedResult<T>( perPage, elementCount, currentPage, pageCount, pageElements, perPage, currentPage, null );
+		return result;
+	}
+	
+	/**
+	 * <p>Creates a new paged result</p>
+	 * 
+	 * @param perPage			maximum number of elements in a page
+	 * @param elementCount		total number of elements in all pages
+	 * @param currentPage		current page ( range 1 - n )
+	 * @param pageElements		elements in the current page
+	 * @return					a new paged result
+	 */
+	public static <T> PagedResult<T>  newPagedResult( int perPage, int elementCount, int currentPage, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey ) {
+		int pageCount = calcPageCount( elementCount, perPage );
+		AbstractPagedResult<T> result = new DefaultPagedResult<T>( perPage, elementCount, currentPage, pageCount, pageElements, realPerPage, realCurrentPage, virtualKey );
 		return result;
 	}
 	
@@ -26,18 +54,20 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T> {
 	 * @param resultCode
 	 * @return
 	 */
-	public static <T>  PagedResult<T>  newPagedResult( int resultCode ) {
-		DefaultPagedResult<T> result = new DefaultPagedResult<T>( -1, -1, -1, -1, null );
+	protected static <T>  PagedResult<T>  newPagedResult( int resultCode ) {
+		DefaultPagedResult<T> result = new DefaultPagedResult<T>( -1, -1, -1, -1, null, -1, -1, null );
 		result.setResultCode( resultCode );
 		return result;
 	}
 	
-	public DefaultPagedResult(int perPage, int elementCount, int currentPage, int pageCount, List<T> pageElements) {
+	protected DefaultPagedResult(int perPage, int elementCount, int currentPage, int pageCount, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey) {
 		super(perPage, elementCount, currentPage, pageCount, pageElements);
+		this.realCurrentPage = realCurrentPage;
+		this.realPerPage = realPerPage;
+		this.virtualKey = virtualKey;
 	}
 
 	private static int calcPageCount( int elementCount, int perPage ) {
-		
 		int pageCount = 0;
 		if(perPage>0)
 		{
@@ -51,41 +81,34 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T> {
 
 
 	@Override
-	public Integer getCurrentePage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getVirtualSearchKey() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.virtualKey;
 	}
 
 	@Override
-	public Integer getBufferPageSize() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getRealPerPage() {
+		return this.realPerPage;
+	}
+	
+	@Override
+	public Integer getRealCurrentPage() {
+		return this.realCurrentPage;
 	}
 
 	@Override
-	public PagedResult<T> getVirtualPage(int currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+	public PagedResult<T> getVirtualPage( int currentPage ) {
+		int offset =  ((this.getRealCurrentPage()-1)*this.getRealPerPage());
+		int virtualStart = (currentPage-1)*this.getPerPage()-offset;
+		int virtualEnd = virtualStart+this.getPerPage();
+		this.getLogger().log( Level.FINE, "current page : "+currentPage+" size : "+this.getCurrentPageSize()+" vs : "+virtualStart+" ve : "+virtualEnd+" rps:"+this.getRealPerPage()+" , rp:"+this.getRealCurrentPage() );
+		List<T> elements = this.getPageElementsList().subList( virtualStart , virtualEnd );
+		return newPagedResult( this.getPerPage(), this.getElementCount(), currentPage, elements );
 	}
 
 	@Override
 	public boolean isFullResult() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public Integer getCurrentePageSize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	
 }
