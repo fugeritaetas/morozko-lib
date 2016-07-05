@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-cmd.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/csv/opencsv/opencsv-3.8.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/itext/2_1_7/itext-rtf-2.1.7.jar"/>
+	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/csv/javacsv/2_1/javacsv.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,6 +1,7 @@
 package org.morozko.java.mod.tools.dbex;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
@@ -10,22 +11,28 @@ import org.morozko.java.mod.db.connect.ConnectionFactory;
 import org.morozko.java.mod.tools.db.ConnArgs;
 import org.morozko.java.mod.tools.dbex.qo.QueryOutputFun;
 import org.morozko.java.mod.tools.dbex.qo.QueryOutputFunCSV;
+import org.morozko.java.mod.tools.dbex.qo.QueryOutputFunJAVACSV;
 import org.morozko.java.mod.tools.dbex.qo.QueryOutputFunXLS;
 import org.morozko.java.mod.tools.util.args.ArgList;
 import org.morozko.java.mod.tools.util.args.ArgUtils;
 
 public class QueryOutput {
 	
-	public static final String VERSION = "QueryOutput v 1.0.0 (2015-12-23) ";
+	public static final String VERSION = "QueryOutput v 1.0.2 (2016-07-05) ";
 	
+	public static final String OUTPUT_MODE_JAVACSV = "javacsv";
+	public static final String OUTPUT_MODE_OPENCSV = "opencsv";	// java 1.7 required now
 	public static final String OUTPUT_MODE_CSV = "csv";
 	public static final String OUTPUT_MODE_XLS = "xls";
+	
 	
 	public static final String OUTPUT_MODE_PARAM = "m";
 	
 	private static final HashMap MODES = new HashMap();
 	static {
-		MODES.put( OUTPUT_MODE_CSV , QueryOutputFunCSV.class.getName() );
+		MODES.put( OUTPUT_MODE_OPENCSV , QueryOutputFunCSV.class.getName() );
+		MODES.put( OUTPUT_MODE_JAVACSV , QueryOutputFunJAVACSV.class.getName() );
+		MODES.put( OUTPUT_MODE_CSV , QueryOutputFunJAVACSV.class.getName() );
 		MODES.put( OUTPUT_MODE_XLS , QueryOutputFunXLS.class.getName() );
 	}
 	
