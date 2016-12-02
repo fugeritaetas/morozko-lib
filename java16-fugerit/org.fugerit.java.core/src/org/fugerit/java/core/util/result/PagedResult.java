@@ -47,7 +47,7 @@ public interface PagedResult<T> {
 	 * 
 	 * @return	total number of elements in all pages
 	 */
-	public Integer getElementCount();
+	public Long getElementCount();
 	
 	/**
 	 * <p>Position of current page ( in the range 1 - n )</p>

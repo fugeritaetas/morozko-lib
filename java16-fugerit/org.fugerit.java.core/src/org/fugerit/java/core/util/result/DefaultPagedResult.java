@@ -26,7 +26,7 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T>  implements Se
 	 * @param pageElements		elements in the current page
 	 * @return					a new paged result
 	 */
-	public static <T> PagedResult<T>  newPagedResult( int perPage, int elementCount, int currentPage, List<T> pageElements ) {
+	public static <T> PagedResult<T>  newPagedResult( int perPage, long elementCount, int currentPage, List<T> pageElements ) {
 		int pageCount = calcPageCount( elementCount, perPage );
 		AbstractPagedResult<T> result = new DefaultPagedResult<T>( perPage, elementCount, currentPage, pageCount, pageElements, perPage, currentPage, null );
 		return result;
@@ -41,7 +41,7 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T>  implements Se
 	 * @param pageElements		elements in the current page
 	 * @return					a new paged result
 	 */
-	public static <T> PagedResult<T>  newPagedResult( int perPage, int elementCount, int currentPage, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey ) {
+	public static <T> PagedResult<T>  newPagedResult( int perPage, long elementCount, int currentPage, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey ) {
 		int pageCount = calcPageCount( elementCount, perPage );
 		AbstractPagedResult<T> result = new DefaultPagedResult<T>( perPage, elementCount, currentPage, pageCount, pageElements, realPerPage, realCurrentPage, virtualKey );
 		return result;
@@ -60,18 +60,18 @@ public class DefaultPagedResult<T> extends AbstractPagedResult<T>  implements Se
 		return result;
 	}
 	
-	protected DefaultPagedResult(int perPage, int elementCount, int currentPage, int pageCount, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey) {
+	protected DefaultPagedResult(int perPage, long elementCount, int currentPage, int pageCount, List<T> pageElements, int realPerPage, int realCurrentPage, String virtualKey) {
 		super(perPage, elementCount, currentPage, pageCount, pageElements);
 		this.realCurrentPage = realCurrentPage;
 		this.realPerPage = realPerPage;
 		this.virtualKey = virtualKey;
 	}
 
-	private static int calcPageCount( int elementCount, int perPage ) {
+	private static int calcPageCount( long elementCount, int perPage ) {
 		int pageCount = 0;
 		if(perPage>0)
 		{
-			pageCount = ( elementCount )/( perPage );
+			pageCount = (int) ( ( elementCount )/( perPage ) );
 			if ( ( elementCount )%( perPage ) != 0 ) {
 				pageCount++;
 			}	

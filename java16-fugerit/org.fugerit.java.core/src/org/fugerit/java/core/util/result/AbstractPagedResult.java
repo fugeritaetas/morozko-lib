@@ -18,7 +18,7 @@ public abstract class AbstractPagedResult<T> extends BasicLogObject implements P
 	
 	private int perPage;
 	
-	private int elementCount;
+	private long elementCount;
 	
 	private int currentPage;
 	
@@ -32,7 +32,7 @@ public abstract class AbstractPagedResult<T> extends BasicLogObject implements P
 		this.resultCode = resultCode;
 	}
 
-	protected AbstractPagedResult(int perPage, int elementCount, int currentPage, int pageCount, List<T> pageElements) {
+	protected AbstractPagedResult(int perPage, long elementCount, int currentPage, int pageCount, List<T> pageElements) {
 		super();
 		this.offset = perPage*(currentPage-1);
 		this.perPage = perPage;
@@ -70,8 +70,8 @@ public abstract class AbstractPagedResult<T> extends BasicLogObject implements P
 	 * 
 	 * @return	total number of elements in all pages
 	 */
-	public Integer getElementCount() {
-		return new Integer( this.elementCount );
+	public Long getElementCount() {
+		return new Long( this.elementCount );
 	}
 
 	/**
@@ -142,7 +142,7 @@ public abstract class AbstractPagedResult<T> extends BasicLogObject implements P
 	
 	public boolean isLastPage() {
 		boolean lastPage = false;
-		int lp = (this.getElementCount()/this.getPerPage())+1;
+		long lp = (this.getElementCount()/this.getPerPage())+1;
 		if ( this.getElementCount()%this.getPerPage() == 0 ) {
 			lp--;
 		}
