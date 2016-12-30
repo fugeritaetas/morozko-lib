@@ -3,9 +3,9 @@ package org.fugerit.java.core.web.navmap.tlds;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
-import org.fugerit.java.core.ent.tld.helpers.TagSupportHelper;
 import org.fugerit.java.core.web.navmap.model.NavEntry;
 import org.fugerit.java.core.web.navmap.model.NavMap;
+import org.fugerit.java.core.web.tld.helpers.TagSupportHelper;
 
 /**
  * Custom tag to get NavData into request.

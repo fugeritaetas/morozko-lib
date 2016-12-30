@@ -43,7 +43,7 @@ public class VirtualPageCache<T> extends BasicLogObject implements Serializable 
 		String virtualKey = finder.getSearchVirtualKey();
 		String key = this.buildPageKey(virtualKey, currentPage);
 		CacheWrapper<T> wrapper = this.cache.get( key );
-		this.getLogger().log( Level.FINE, "WRAPPER : "+wrapper );
+		this.getLogger().debug( "WRAPPER : "+wrapper );
 		PagedResult<T> page = null;
 		if ( wrapper != null ) {
 			if ( this.checkTtl( wrapper ) ) {
@@ -60,7 +60,7 @@ public class VirtualPageCache<T> extends BasicLogObject implements Serializable 
 		int currentPage = bufferPage.getRealCurrentPage();
 		String virtualKey = bufferPage.getVirtualSearchKey();
 		String key = this.buildPageKey(virtualKey, currentPage);
-		this.getLogger().log( Level.FINE, "ADD TO CACHE : "+key );
+		this.getLogger().debug( "ADD TO CACHE : "+key );
 		this.cache.put( key , new CacheWrapper<T>( bufferPage ) );
 	}
 	

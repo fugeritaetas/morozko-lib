@@ -30,7 +30,7 @@ public class ClassHelper {
 	 * <p>Return top level class loader.</p>
 	 * 
 	 * <p>The code of this method is taked from source of apache struts 1 class 
-	 * <a href="http://svn.apache.org/repos/asf/struts/struts1/trunk/core/src/main/java/org/apache/struts/util/RequestUtils.java">RequestUtil</a></p>
+	 * <a href="http://svn.apache.org/repos/asf/struts/struts1/trunk/org.fugerit.java.core/src/main/java/org/apache/struts/util/RequestUtils.java">RequestUtil</a></p>
 	 * 
 	 * @return				the top level class loader
 	 * @throws Exception

@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
-import org.fugerit.java.core.ent.tld.helpers.TagSupportHelper;
 import org.fugerit.java.core.web.auth.handler.AuthHandler;
 import org.fugerit.java.core.web.navmap.model.NavEntry;
 import org.fugerit.java.core.web.navmap.model.NavMap;
+import org.fugerit.java.core.web.tld.helpers.TagSupportHelper;
 
 /**
  * Use auth handler to check a authorization for a resource

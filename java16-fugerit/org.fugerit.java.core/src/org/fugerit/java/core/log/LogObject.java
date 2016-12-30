@@ -1,6 +1,6 @@
 package org.fugerit.java.core.log;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 public interface LogObject {
 

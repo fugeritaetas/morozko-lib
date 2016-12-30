@@ -1,10 +1,10 @@
 package org.fugerit.java.core.log;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 public class BasicLogObject implements LogObject {
 	
-	private Logger logger = Logger.getLogger( this.getClass().getName() );
+	private Logger logger = LogFacade.newLogger( this );
 
 	/* (non-Javadoc)
 	 * @see org.fugerit.java.core.log.LogObject#getLogger()

@@ -145,6 +145,7 @@ public class EmailSender2 extends BasicLogObject implements MessageSender {
 			Iterator it = message.getMessageParts();
 			while ( it.hasNext() ) {
 				MessagePart part = (MessagePart)it.next();
+				System.out.println( "ADD PART "+part+" -> "+part.getType() );
 				if ( part.getType() == MessagePart.TYPE_TEXT ) {
 					MessageTextPart messageTextPart = (MessageTextPart)part;
 					this.getLog().debug( "send text part : "+messageTextPart.getContent() );
@@ -164,7 +165,9 @@ public class EmailSender2 extends BasicLogObject implements MessageSender {
 			
 			msg.setContent(mp);
 			
+			System.out.println( "TRASPORT SEND START -> "+msg );
 			Transport.send(msg);
+			System.out.println( "TRASPORT SEND END" );
 			
 		} catch (Exception e) {
 			throw ( new MessageException( e ) );
