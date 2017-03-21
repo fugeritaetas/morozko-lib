@@ -42,6 +42,7 @@ import java.sql.Statement;
 import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 /**
  * <p></p>
@@ -425,6 +426,32 @@ public class ConnectionWrapper implements Connection {
 
 	public void setClientInfo(String name, String value) throws SQLClientInfoException {
 		wrappedConnection.setClientInfo(name, value);
+	}
+
+	@Override
+	public void abort(Executor arg0) throws SQLException {
+		this.getWrappedConnection().abort( arg0 );
+	}
+
+	@Override
+	public int getNetworkTimeout() throws SQLException {
+		return this.getWrappedConnection().getNetworkTimeout();
+	}
+
+	@Override
+	public String getSchema() throws SQLException {
+		return this.getWrappedConnection().getSchema();
+	}
+
+	@Override
+	public void setNetworkTimeout(Executor arg0, int arg1) throws SQLException {
+		this.getWrappedConnection().setNetworkTimeout( arg0 , arg1 );
+		
+	}
+
+	@Override
+	public void setSchema(String arg0) throws SQLException {
+		this.getWrappedConnection().setSchema( arg0 );
 	}
 
 	
