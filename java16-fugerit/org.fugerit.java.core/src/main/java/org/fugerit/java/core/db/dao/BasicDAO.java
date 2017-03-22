@@ -71,8 +71,8 @@ public class BasicDAO extends BasicLogObject {
 		return new FieldList( this.getFieldFactory() );
 	}
 	
-	public List newList() {
-		return new ArrayList();
+	public List<Object> newList() {
+		return new ArrayList<Object>();
 	}	
 	
 	private int update( OpDAO op, Connection conn ) throws SQLException {
@@ -84,7 +84,7 @@ public class BasicDAO extends BasicLogObject {
 		return result;
 	}		
 
-	public boolean updateBatch( List opList ) throws DAOException {
+	public boolean updateBatch( List<OpDAO> opList ) throws DAOException {
 		boolean result = true;
 		Connection conn = this.getConnection();
 		try {

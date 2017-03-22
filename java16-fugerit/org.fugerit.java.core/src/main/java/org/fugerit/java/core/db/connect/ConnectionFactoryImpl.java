@@ -25,7 +25,6 @@
 package org.fugerit.java.core.db.connect;
 
 import java.sql.Connection;
-
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
 import java.sql.SQLException;
@@ -38,16 +37,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.fugerit.java.core.db.connect.ConnectionFactory;
-import org.fugerit.java.core.db.connect.ConnectionFactoryImpl;
-import org.fugerit.java.core.db.connect.ConnectionWrapperNoClose;
-import org.fugerit.java.core.db.connect.DS2ConnectionFactory;
-import org.fugerit.java.core.db.connect.DSConnectionFactory;
-import org.fugerit.java.core.db.connect.DirectConnectionFactory;
-import org.fugerit.java.core.db.connect.SingleConnectionFactory;
 import org.fugerit.java.core.db.dao.DAOException;
 import org.fugerit.java.core.db.metadata.DataBaseInfo;
-import org.fugerit.java.core.db.sql.ConnectionWrapper;
 import org.fugerit.java.core.log.BasicLogObject;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.xml.dom.DOMUtils;
@@ -56,10 +47,9 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>.
- * </p>
+ * <p>Implementing class for ConnectioNFactory.</p>
  * 
- * @author tux2
+ * @author fugerit
  */
 public abstract class ConnectionFactoryImpl extends BasicLogObject implements ConnectionFactory {
 	
@@ -120,8 +110,8 @@ public abstract class ConnectionFactoryImpl extends BasicLogObject implements Co
 	public static CfConfig parseCfConfig( Element cfConfig ) throws Exception {
 		CfConfig config = new CfConfig();
 		SearchDOM searchDOM = SearchDOM.newInstance( true , true );
-		List cfConfigEntryList = searchDOM.findAllTags( cfConfig , "cf-config-entry" );
-		Iterator cfConfigEntryIt = cfConfigEntryList.iterator();
+		List<Element> cfConfigEntryList = searchDOM.findAllTags( cfConfig , "cf-config-entry" );
+		Iterator<Element> cfConfigEntryIt = cfConfigEntryList.iterator();
 		while ( cfConfigEntryIt.hasNext() ) {
 			Element currentEntryTag = (Element) cfConfigEntryIt.next();
 			Properties props = DOMUtils.attributesToProperties( currentEntryTag );
@@ -164,15 +154,19 @@ public abstract class ConnectionFactoryImpl extends BasicLogObject implements Co
 		String mode = props.getProperty( getParamName( prefix, PROP_CF_MODE ) );
 		LogFacade.getLog().info( "ConnectionFactory.newInstance() mode : "+mode );
 		if ( PROP_CF_MODE_DC.equalsIgnoreCase( mode ) ) {
-			cf = newInstance( props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_DRV ) ), 
-							props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_URL ) ),
-							props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_USR ) ),
-							props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_PWD ) ) );
 			if ( "true".equalsIgnoreCase( props.getProperty( getParamName( prefix, PROP_CF_EXT_POOLED ) ) ) ) {
 				int sc = Integer.parseInt( props.getProperty( getParamName( prefix, PROP_CF_EXT_POOLED_SC ), "3" ) );
 				int ic = Integer.parseInt( props.getProperty( getParamName( prefix, PROP_CF_EXT_POOLED_IC ), "10" ) );
 				int mc = Integer.parseInt( props.getProperty( getParamName( prefix, PROP_CF_EXT_POOLED_MC ), "30" ) );
-				cf = ConnectionFactoryPool.newFactory( cf , sc, mc, ic );
+				cf = new DbcpConnectionFactory( props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_DRV ) ), 
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_URL ) ),
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_USR ) ),
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_PWD ) ), sc, ic, mc );
+			} else {
+				cf = newInstance( props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_DRV ) ), 
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_URL ) ),
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_USR ) ),
+						props.getProperty( getParamName( prefix, PROP_CF_MODE_DC_PWD ) ) );
 			}
 		} else if ( PROP_CF_MODE_DS.equalsIgnoreCase( mode ) ) {
 			cf = newInstance( props.getProperty( PROP_CF_MODE_DS_NAME ) );	
@@ -220,28 +214,11 @@ public abstract class ConnectionFactoryImpl extends BasicLogObject implements Co
 		return (new DS2ConnectionFactory(ds));
 	}	
 	
-	public static ConnectionFactoryImpl newInstanceSingleConnection(Connection conn) throws DAOException {
-		LogFacade.getLog().info( "ConnectionFactoryImpl.newInstanceSingleConnection() single conn : "+conn );
-		return new SingleConnectionFactory( ( new ConnectionWrapperNoClose( conn ) ) );
-	}
-
 	public abstract Connection getConnection() throws DAOException;
 
 	public void release() throws DAOException {
 		
 	}	
-	
-}
-
-class ConnectionWrapperNoClose extends ConnectionWrapper {
-
-	public ConnectionWrapperNoClose(Connection wrappedConnection) {
-		super(wrappedConnection);
-	}
-
-	public void close() throws SQLException {
-		//super.close();
-	}
 	
 }
 
