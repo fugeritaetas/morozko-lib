@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.fugerit.org/java/xsd/navmap-1.0.xsd"
+	    targetNamespace="http://www.fugerit.org/java/xsd/navmap-1.0.xsd"
+	    elementFormDefault="qualified"
+	    attributeFormDefault="unqualified"
+	    version="1.0">
+	    
+	<xsd:annotation>
+		<xsd:documentation>@(#)web-app_2_5.xsds	1.68 07/03/09</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:annotation>
+		<xsd:documentation>
+			Schema definition for navmap library configuration.
+		</xsd:documentation>
+	</xsd:annotation>	
+	    
+
+
+    <xsd:complexType name="nav-map-type"></xsd:complexType>
+
+    <xsd:complexType name="NewComplexType"></xsd:complexType>
+</xsd:schema>

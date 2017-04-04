@@ -9,19 +9,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
 
+import org.fugerit.java.core.db.connect.ConnectionFactory;
+import org.fugerit.java.core.db.dao.DAOException;
 import org.fugerit.java.core.log.BasicLogObject;
+import org.fugerit.java.core.tools.util.args.ArgList;
+import org.fugerit.java.core.tools.util.args.ArgUtils;
+import org.fugerit.java.core.tools.util.args.ConnArgs;
 import org.fugerit.java.core.util.result.DefaultPagedResult;
 import org.fugerit.java.core.util.result.DefaultVirtualFinder;
 import org.fugerit.java.core.util.result.PagedResult;
 import org.fugerit.java.core.util.result.VirtualFinder;
 import org.fugerit.java.core.util.result.VirtualPageCache;
-import org.morozko.java.mod.db.connect.ConnectionFactory;
-import org.morozko.java.mod.db.dao.DAOException;
-import org.morozko.java.mod.tools.db.ConnArgs;
-import org.morozko.java.mod.tools.util.args.ArgList;
-import org.morozko.java.mod.tools.util.args.ArgUtils;
 
 /**
  * 
@@ -44,11 +43,11 @@ public class PagedResultTest {
 	
 	private static PagedResult<Properties> loadPage( ConnectionFactory cf, VirtualFinder finder, String testSql ) throws SQLException, DAOException {
 		Connection conn = cf.getConnection();
-		logger.getLogger().log( Level.INFO, "connection >> '"+conn+"'" );
+		logger.getLogger().info( "connection >> '"+conn+"'" );
 		int perPage = finder.getRealPerPage();
 		int currentPage = finder.getRealCurrentPage();
 		String pageSql = testSql+" LIMIT "+perPage+" OFFSET "+(currentPage-1)*perPage;
-		logger.getLogger().log( Level.INFO, "paged-sql  >> '"+pageSql+"'" );
+		logger.getLogger().info( "paged-sql  >> '"+pageSql+"'" );
 		List<Properties> list = new ArrayList<Properties>();
 		int maxColumns = 5;
 		try {
@@ -79,7 +78,7 @@ public class PagedResultTest {
 			ArgList argList = ArgUtils.parseArgsDefault( args );
 			ConnectionFactory cf = ConnArgs.createConnectionFactory( argList );
 			String testSql = argList.findArgValue( "query-test" );
-			logger.getLogger().log( Level.INFO, "query-test >> '"+testSql+"'" );
+			logger.getLogger().info( "query-test >> '"+testSql+"'" );
 			VirtualPageCache<Properties> cache = new VirtualPageCache<Properties>();
 			int realPerPage = 25;
 			int virtualPerPage = 5;
@@ -96,32 +95,32 @@ public class PagedResultTest {
 				if ( virtualPointer%realPerPage != 0 ) {
 					realCurrentPage++;
 				}
-				logger.getLogger().log( Level.INFO, "REAL CURRENT PAGE "+realCurrentPage );
+				logger.getLogger().info( "REAL CURRENT PAGE "+realCurrentPage );
 				VirtualFinder finder = new DefaultVirtualFinder( virtualPerPage, virtualCurrentPage , realPerPage, realCurrentPage, testSql );
 				PagedResult<Properties> realPage = cache.getCachedPage( finder );
 				if ( realPage == null ) {
-					logger.getLogger().log( Level.INFO, "***************************************************************" );
-					logger.getLogger().log( Level.INFO, "***************************************************************" );
-					logger.getLogger().log( Level.INFO, "load real page finder -> "+finder );
-					logger.getLogger().log( Level.INFO, "***************************************************************" );
-					logger.getLogger().log( Level.INFO, "***************************************************************" );
+					logger.getLogger().info( "***************************************************************" );
+					logger.getLogger().info( "***************************************************************" );
+					logger.getLogger().info( "load real page finder -> "+finder );
+					logger.getLogger().info( "***************************************************************" );
+					logger.getLogger().info( "***************************************************************" );
 					realPage = loadPage( cf , finder, testSql );
 					cache.addPageToCache( realPage );
 					dbAccess++;
 				} else {
-					logger.getLogger().log( Level.INFO, "VIRTUAL PAGE WAS CACHED! "+k );
+					logger.getLogger().info( "VIRTUAL PAGE WAS CACHED! "+k );
 					cacheAccess++;
 				}
 				PagedResult<Properties> virtualPage = realPage.getVirtualPage( virtualCurrentPage );
-				logger.getLogger().log( Level.INFO, "PRINT VIRTUAL PAGE : "+k+" > "+virtualPage.getCurrentPageSize() );
+				logger.getLogger().info( "PRINT VIRTUAL PAGE : "+k+" > "+virtualPage.getCurrentPageSize() );
 				Iterator<Properties> it = virtualPage.getPageElements();
 				int count = 0;
 				while ( it.hasNext() ) {
 					count++;
-					logger.getLogger().log( Level.INFO, "Element "+count+" -> "+it.next() );
+					logger.getLogger().info( "Element "+count+" -> "+it.next() );
 				}	
 			}
-			logger.getLogger().log( Level.INFO, "dbAccess:"+dbAccess+" cacheAccess:"+cacheAccess );
+			logger.getLogger().info( "dbAccess:"+dbAccess+" cacheAccess:"+cacheAccess );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
