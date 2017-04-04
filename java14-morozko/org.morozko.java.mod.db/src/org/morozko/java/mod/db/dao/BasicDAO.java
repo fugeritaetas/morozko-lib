@@ -228,8 +228,10 @@ public class BasicDAO extends BasicLogObject {
         	Connection conn = this.getConnection();
         	try {
         		String productName = conn.getMetaData().getDatabaseProductName().toLowerCase();
-        		if ( productName.indexOf( "mysql" ) != -1 ) {
+        		if ( productName.indexOf( "mysql" ) != -1 || productName.indexOf( "maria" ) != -1 ) {
         			this.queryWrapper = MysqlQueryWrapper.INSTANCE;
+        		} else if ( productName.indexOf( "postgres" ) != -1 ) {
+        			this.queryWrapper = PostgresQueryWrapper.INSTANCE;
         		} else if ( productName.indexOf( "oracle" ) != -1 ) {
         			this.queryWrapper = OracleQueryWrapper.INSTANCE;
         		} else {
@@ -574,6 +576,20 @@ class OracleQueryWrapper extends QueryWrapper {
 		result.append( sql );
 		result.append( ") paged1 " );
 		result.append( ") paged2 WHERE paged2.rn > "+start+" AND paged2.rn <= "+end );
+		return result.toString();
+	}
+	
+}
+
+class PostgresQueryWrapper extends QueryWrapper {
+
+	public static final QueryWrapper INSTANCE = new PostgresQueryWrapper();
+	
+	public String createPagedQuery(String sql, PageInfoDB info) {
+		StringBuffer result = new StringBuffer();
+		result.append( "SELECT paged.* FROM ( " );
+		result.append( sql );
+		result.append( ") paged LIMIT "+info.getSize()+" OFFSET "+( (info.getNumber()-1)*info.getSize() ) );
 		return result.toString();
 	}
 	

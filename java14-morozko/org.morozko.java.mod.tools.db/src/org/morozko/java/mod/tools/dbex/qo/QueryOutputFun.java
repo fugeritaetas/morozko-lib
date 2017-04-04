@@ -2,10 +2,13 @@ package org.morozko.java.mod.tools.dbex.qo;
 
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.io.StringReader;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.sql.Types;
 import java.text.NumberFormat;
 
 import org.morozko.java.core.log.BasicLogObject;
@@ -62,7 +65,13 @@ public abstract class QueryOutputFun extends BasicLogObject implements Serializa
 			this.rowCount++;
 			while ( rs.next() ) {
 				for ( int k=0; k<cols; k++ ) {
-					String v = String.valueOf( rs.getObject( (k+1) ) );
+					String v = null;
+					if ( rsmd.getColumnType( k+1 ) == Types.CLOB ) {
+						Clob c = rs.getClob( k+1 );
+						v = c.getSubString( (long)1 , (int)c.length() );
+					} else {
+						v = String.valueOf( rs.getObject( (k+1) ) );
+					}
 					buffer[k] = v;
 				}
 				this.outputRow( buffer );
