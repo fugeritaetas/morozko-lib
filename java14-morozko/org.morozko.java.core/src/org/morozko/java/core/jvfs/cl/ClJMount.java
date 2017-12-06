@@ -52,8 +52,13 @@ import org.morozko.java.core.jvfs.JVFS;
 public class ClJMount extends DefaultConfigurableObject implements JMount {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6365971783948169969L;
+	
+	/**
 	 *	<jdl:section>
-	 * 		<jdl:text lang='it'>Proprietà di configurazione che indica il package name.</jdl:text>
+	 * 		<jdl:text lang='it'>Proprietï¿½ di configurazione che indica il package name.</jdl:text>
 	 * 		<jdl:text lang='en'>Property to configure the package to use.</jdl:text>  
 	 *	</jdl:section>
 	 */	

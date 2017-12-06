@@ -55,6 +55,11 @@ import org.w3c.dom.Element;
  */
 public class DefaultDirMapHandler extends XMLConfigurableObject implements DirMapHandler {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4040071691833624135L;
+
 	public DefaultDirMapHandler() {
 		
 	}

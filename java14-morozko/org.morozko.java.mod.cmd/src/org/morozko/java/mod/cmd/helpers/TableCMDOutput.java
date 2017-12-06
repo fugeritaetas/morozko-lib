@@ -149,4 +149,9 @@ public class TableCMDOutput extends AbstractCMDOutput {
     public int displaySize(int col) throws CMDException {
         return this.displaySize[col];
     }
+
+	public int getCurrentRowCount() {
+		return this.rowPointer+1;
+	}
+
 }

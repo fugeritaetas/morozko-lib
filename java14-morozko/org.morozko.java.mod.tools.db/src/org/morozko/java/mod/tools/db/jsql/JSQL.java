@@ -27,6 +27,10 @@ package org.morozko.java.mod.tools.db.jsql;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import org.morozko.java.core.io.FileIO;
+import org.morozko.java.core.io.line.LineIOUtils;
+import org.morozko.java.core.io.line.LineWriter;
+import org.morozko.java.core.log.LogFacade;
 import org.morozko.java.mod.cmd.CMD;
 import org.morozko.java.mod.cmd.CMDException;
 import org.morozko.java.mod.cmd.CMDOutput;
@@ -44,10 +48,6 @@ import org.morozko.java.mod.tools.ToolUtils;
 import org.morozko.java.mod.tools.db.ConnArgs;
 import org.morozko.java.mod.tools.util.args.ArgList;
 import org.morozko.java.mod.tools.util.args.ArgUtils;
-import org.morozko.java.core.io.FileIO;
-import org.morozko.java.core.io.line.LineIOUtils;
-import org.morozko.java.core.io.line.LineWriter;
-import org.morozko.java.core.log.LogFacade;
 
 /**
  * <p></p>
@@ -58,6 +58,9 @@ import org.morozko.java.core.log.LogFacade;
 public class JSQL {
     
     public static final String VERSION = "0.1.8 (2016-04-20)";
+    
+    public static final int EXIT_OK = 0;
+    public static final int EXIT_EXCEPTION = 1;
     
     private static void printInfo() {
         ToolUtils.printInfo("JSQL v. "+VERSION, "Matteo Franci a.k.a Morozko");
@@ -75,6 +78,7 @@ public class JSQL {
     }
     
     public static void main(String[] arg) {
+    	int exit = EXIT_OK;
         try {
             
             ArgList list = ArgUtils.parseArgsProps(arg);
@@ -169,8 +173,11 @@ public class JSQL {
             System.err.println("      -t  [table|csv] ");
             System.err.println();
             e.printStackTrace();
+            exit = EXIT_EXCEPTION;
         }
         
+        System.out.println( "EXIT STATUS '"+exit+"'" );
+        System.exit( exit );
     }    
     
     public JSQL() {

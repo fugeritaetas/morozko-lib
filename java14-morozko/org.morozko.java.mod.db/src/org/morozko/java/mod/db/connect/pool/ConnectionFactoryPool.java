@@ -177,10 +177,19 @@ public class ConnectionFactoryPool extends ConnectionFacadeWrapper {
 		public void close() throws SQLException {
 			this.factory.give( this.getWrappedConnection() );
 		}
-		
 	}
 
-	private Object oggetto;
-	
+	public int getMaxConnection() {
+		return maxConnection;
+	}
+
+	public int getMinConnection() {
+		return minConnection;
+	}
+
+	public int getIdlConnection() {
+		return idlConnection;
+	}
+
 }
 

@@ -16,14 +16,6 @@ public class MaskBackupAdaptor extends BackupAdaptorWrapper {
 	private final static String MASK2 = "BCDFGHJKLMNPQRSTVXYWZ";
 	private final static String MASK3 = "0123456789";
 	
-	private static Character[] toChar( char[] f ) {
-		Character[] t = new Character[f.length];
-		for ( int k=0; k<f.length; k++ ) {
-			t[k] = new Character( f[k] );
-		}
-		return t;
-	}
-	
 	private static void createTranslation( HashMap t, String mask ) {
 		char[] c1 = mask.toCharArray();
 		char[] c2 = mask.toCharArray();

@@ -144,10 +144,11 @@ public class ClJFile extends AbstractJFile {
 	 * @see org.morozko.java.core.jvfs.helpers.AbstractJFile#getOutputStream()
 	 */
 	public OutputStream getOutputStream() throws IOException {
-		if ( true ) {
+		OutputStream os = null;
+		if ( Boolean.TRUE.booleanValue() ) {
 			throw ( new IOException( "Unsupported Operation" ) );	
 		}
-		return null;
+		return os;
 	}
 
 	/* (non-Javadoc)

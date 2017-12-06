@@ -238,10 +238,10 @@ public class DefaultTableBackup extends BasicLogObject implements TableBackup {
                 		res+= toPS.executeUpdate();	
                     } else {
                     	toPS.addBatch();
-                    }	
+                    }
+                	this.getLog().debug( "RES : "+res );
                 } catch (SQLException e) {
                 	this.getLog().error("Error backing up table "+table+" on row "+rowCount+", "+fullComment, e);
-                	
                 	throw e;
                 }
                 

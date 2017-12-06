@@ -40,7 +40,7 @@ public class ClassLoaderFacade {
 		File[] list = dir;
 		URL[] url = new URL[list.length];
 		for ( int k=0; k<list.length; k++ ) {
-			url[k] = list[k].toURL();
+			url[k] = list[k].toURI().toURL();
 		}
 		return new DirClassLoader( url, parent );
 	}

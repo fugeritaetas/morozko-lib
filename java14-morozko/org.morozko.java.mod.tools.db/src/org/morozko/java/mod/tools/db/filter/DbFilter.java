@@ -28,12 +28,12 @@ package org.morozko.java.mod.tools.db.filter;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.morozko.java.core.log.LogFacade;
 import org.morozko.java.mod.db.filter.DataFilterConfig;
 import org.morozko.java.mod.tools.ToolUtils;
 import org.morozko.java.mod.tools.util.args.Arg;
 import org.morozko.java.mod.tools.util.args.ArgList;
 import org.morozko.java.mod.tools.util.args.ArgUtils;
-import org.morozko.java.core.log.LogFacade;
 import org.xml.sax.InputSource;
 
 /**

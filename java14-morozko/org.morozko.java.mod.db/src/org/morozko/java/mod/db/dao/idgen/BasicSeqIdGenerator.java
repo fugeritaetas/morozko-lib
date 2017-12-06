@@ -31,10 +31,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.morozko.java.mod.db.dao.DAOException;
-import org.morozko.java.mod.db.dao.DAOID;
 import org.morozko.java.core.cfg.ConfigException;
 import org.morozko.java.core.xml.dom.DOMUtils;
+import org.morozko.java.mod.db.dao.DAOException;
+import org.morozko.java.mod.db.dao.DAOID;
 import org.w3c.dom.Element;
 
 /**

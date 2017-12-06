@@ -44,6 +44,11 @@ import org.morozko.java.mod.db.connect.ConnectionFactoryImpl;
  */
 public class DbJMount extends DefaultConfigurableObject implements JMount {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4299060127268731483L;
+
 	public static final String PROP_TABLE_NAME = "db-table-name";
 	
 	public static final String PROP_DAO_CLASS = "db-dao-class";

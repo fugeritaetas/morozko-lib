@@ -79,7 +79,7 @@ public class DBIns {
 					err++;
 				}
 				
-				System.out.println( "COMANDO OK : "+result );
+				System.out.println( "COMANDO OK : "+result+" (fail:"+err+")" );
 				
 			} catch (Exception e) {
 				System.out.println( "COMANDO KO [segue l'errore]" );

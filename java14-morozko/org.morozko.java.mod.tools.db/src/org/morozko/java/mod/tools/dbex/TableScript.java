@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.util.List;
 
 import org.morozko.java.mod.db.connect.ConnectionFactory;
 import org.morozko.java.mod.tools.db.ConnArgs;
@@ -50,14 +49,10 @@ public class TableScript {
 
 			PrintWriter pw = new PrintWriter( System.out );
 					
-			String table = "";
-			
 			ConnectionFactory cf = ConnArgs.createConnectionFactory( argList );
 			
 			Connection conn = cf.getConnection();
-			
-			List tableList = null;
-			
+	
 			DatabaseMetaData dbmd = conn.getMetaData();
 			
 			String[] types = { "TABLE" };

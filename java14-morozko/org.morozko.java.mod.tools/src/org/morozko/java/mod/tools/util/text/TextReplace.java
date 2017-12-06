@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.morozko.java.core.io.FileIO;
 import org.morozko.java.core.io.StreamIO;
 import org.morozko.java.core.util.PropsIO;
 import org.morozko.java.mod.tools.util.args.ArgList;
@@ -24,7 +23,6 @@ public class TextReplace {
 		System.out.println( "                    -p   [params-to-replaces] (property file)" );
 		System.out.println( "                    -in  [input-file] (input-file)" );
 		System.out.println( "                    -out [input-file] (output-file)" );
-		System.out.println( "                    -f   (force, if set overwrite output if exists)" );
 	}
 	
 	public static void main( String[] args ) {
@@ -37,7 +35,6 @@ public class TextReplace {
 				String p = argList.findArgValue( "p" );
 				String i = argList.findArgValue( "in" );
 				String o = argList.findArgValue( "out" );
-				String f = argList.findArgValue( "f" );
 				if ( p == null || i == null || o == null ) {
 					System.out.println( "p, in and out are mandaroty parameters" );
 					printHelp();

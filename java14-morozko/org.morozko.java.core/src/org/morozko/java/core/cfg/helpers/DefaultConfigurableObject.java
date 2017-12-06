@@ -44,6 +44,11 @@ import org.w3c.dom.Element;
 public class DefaultConfigurableObject extends AbstractConfigurableObject implements ConfigurableObject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4773816159035197704L;
+
+	/**
 	 * <p>Convers an XML Tag in a Properties object.</p> 
 	 * 
 	 * @param tag

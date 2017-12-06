@@ -56,6 +56,11 @@ import org.morozko.java.core.jvfs.JVFSImpl;
  */
 public class RealJMount extends DefaultConfigurableObject implements JMount {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2946128203628261102L;
+	
 	public static final String PROP_BASE_PATH = "real-base-path";
 	
 	/**

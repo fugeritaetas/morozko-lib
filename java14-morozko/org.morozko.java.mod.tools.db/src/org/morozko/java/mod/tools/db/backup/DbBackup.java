@@ -27,6 +27,8 @@ package org.morozko.java.mod.tools.db.backup;
 
 import java.io.File;
 
+import org.morozko.java.core.log.LogFacade;
+import org.morozko.java.core.xml.dom.DOMIO;
 import org.morozko.java.mod.db.backup.BackupFacade;
 import org.morozko.java.mod.db.connect.CfConfig;
 import org.morozko.java.mod.db.connect.ConnectionFactoryImpl;
@@ -34,8 +36,6 @@ import org.morozko.java.mod.tools.ToolUtils;
 import org.morozko.java.mod.tools.util.args.Arg;
 import org.morozko.java.mod.tools.util.args.ArgList;
 import org.morozko.java.mod.tools.util.args.ArgUtils;
-import org.morozko.java.core.log.LogFacade;
-import org.morozko.java.core.xml.dom.DOMIO;
 
 /**
  * <p></p>

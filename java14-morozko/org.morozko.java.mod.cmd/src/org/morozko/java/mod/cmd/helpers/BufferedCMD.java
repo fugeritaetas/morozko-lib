@@ -34,7 +34,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.morozko.java.core.log.LogFacade;
 import org.morozko.java.mod.cmd.CMD;
 import org.morozko.java.mod.cmd.CMDException;
 import org.morozko.java.mod.cmd.CMDOutput;

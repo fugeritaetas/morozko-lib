@@ -39,6 +39,11 @@ import org.morozko.java.core.cfg.ConfigException;
  */
 public abstract class XMLConfigurableObject extends AbstractConfigurableObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 755777323804668749L;
+
 	/* (non-Javadoc)
 	 * @see org.morozko.java.core.cfg.ConfigurableObject#configure(java.util.Properties)
 	 */

@@ -74,10 +74,11 @@ public abstract class AbstractOp extends BasicLogObject implements Op {
 	 * @see org.morozko.java.core.lang.Op#undoOp()
 	 */
 	public boolean undoOp() throws Exception {
-		if ( true ) {
+		boolean result = true;
+		if ( result ) {
 			throw ( new Exception( "Unimplemented Method" ) );
 		}
-		return true;
+		return result;
 	}
 
 	/* (non-Javadoc)

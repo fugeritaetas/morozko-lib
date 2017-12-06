@@ -522,10 +522,8 @@ public class BasicDAO extends BasicLogObject {
 				PreparedStatement ps = conn.prepareStatement( query );
 				this.setAll(ps, fields);
 				ResultSet rs = ps.executeQuery();
-				int i=0;
 				while (rs.next()) {
 					l.add( re.extractNext( rs ) );
-					i++;
 				}
 				rs.close();
 				ps.close();
