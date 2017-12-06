@@ -1,7 +1,6 @@
 package org.morozko.java.mod.tools.dbex.qo;
 
 import java.io.OutputStream;
-
 import java.io.OutputStreamWriter;
 
 import com.csvreader.CsvWriter;

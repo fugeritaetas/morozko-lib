@@ -52,9 +52,9 @@ public interface CMDOutput {
     public String getCommand();
     
     /**
-     * <p>Restituisce il numero di colonne di cui è composto l'output.</p>
+     * <p>Restituisce il numero di colonne di cui ï¿½ composto l'output.</p>
      * 
-     * @return          il numero di colonne di cui è composto l'output
+     * @return          il numero di colonne di cui ï¿½ composto l'output
      * @throws CMDException     se si verifica un problema durante l'esecuzione
      */
     public int columns() throws CMDException;
@@ -99,5 +99,7 @@ public interface CMDOutput {
      * @throws CMDException     se si verificano problemi durante il rilascio
      */
     public void release() throws CMDException;
+    
+    public int getCurrentRowCount();
     
 }

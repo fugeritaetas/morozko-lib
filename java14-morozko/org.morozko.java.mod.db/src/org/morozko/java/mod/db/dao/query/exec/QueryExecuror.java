@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.morozko.java.core.log.LogFacade;
 import org.morozko.java.mod.db.connect.ConnectionFactory;
 import org.morozko.java.mod.db.connect.ConnectionFactoryImpl;
 import org.morozko.java.mod.db.dao.BasicDAOFactory;
@@ -69,6 +70,7 @@ public class QueryExecuror extends GenericDAO {
 			Object param = paramMap.get( current );
 			fl.addField( param );
 			count++;
+			LogFacade.getLog().debug( "currente param "+count+" "+current );
 		}
 		
 		sql = sql.replaceAll( pat, "?" );

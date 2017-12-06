@@ -31,17 +31,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.morozko.java.mod.db.connect.ConnectionFacade;
-import org.morozko.java.mod.db.connect.ConnectionFactory;
-import org.morozko.java.mod.db.connect.ConnectionFactoryImpl;
-import org.morozko.java.mod.db.dao.BasicDAOFactory;
-import org.morozko.java.mod.db.dao.DAOException;
 import org.morozko.java.core.cfg.ConfigException;
 import org.morozko.java.core.cfg.helpers.XMLConfigurableObject;
 import org.morozko.java.core.log.LogFacade;
 import org.morozko.java.core.xml.dom.DOMIO;
 import org.morozko.java.core.xml.dom.DOMUtils;
 import org.morozko.java.core.xml.dom.SearchDOM;
+import org.morozko.java.mod.db.connect.ConnectionFacade;
+import org.morozko.java.mod.db.connect.ConnectionFactory;
+import org.morozko.java.mod.db.connect.ConnectionFactoryImpl;
+import org.morozko.java.mod.db.dao.BasicDAOFactory;
+import org.morozko.java.mod.db.dao.DAOException;
 import org.w3c.dom.Element;
 
 /**
@@ -51,6 +51,11 @@ import org.w3c.dom.Element;
  *
  */
 public class QueryTableXML extends XMLConfigurableObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2282514348859298530L;
 
 	private QueryTableDAO queryTableDAO;
 	

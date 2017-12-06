@@ -43,6 +43,11 @@ import org.morozko.java.core.util.PropsFacade;
  */
 public class Forwarder extends PropertiesConfigurableObject implements RequestHandler {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9097099290523039314L;
+
 	public static Forwarder newInstance( String forwardTo ) throws ConfigException {
 		return newInstance( PropsFacade.singleProp( PROP_FORWARDTO, forwardTo ));
 	}	

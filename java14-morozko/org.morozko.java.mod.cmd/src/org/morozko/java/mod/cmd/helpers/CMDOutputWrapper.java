@@ -91,7 +91,13 @@ public class CMDOutputWrapper implements CMDOutput {
         return this.getWrappedOutput().getCommand();
     }
     
-    /**
+    
+    
+    public int getCurrentRowCount() {
+		return wrappedOutput.getCurrentRowCount();
+	}
+
+	/**
      * <p>Restituisce il valore di wrappedOutput.</p>
      * 
      * @return il valore di wrappedOutput.

@@ -4,6 +4,11 @@ import org.morozko.java.core.util.result.PageInfo;
 
 public class PageInfoDB extends PageInfo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9056191900813843138L;
+
 	public PageInfoDB(int number, int size) {
 		super(number, size);
 	}

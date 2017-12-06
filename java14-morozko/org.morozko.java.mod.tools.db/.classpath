@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/jexcelapi/2_6_12/jxl.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-core.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-ext-db.jar"/>
-	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-cmd.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/csv/opencsv/opencsv-3.8.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/itext/2_1_7/itext-rtf-2.1.7.jar"/>
 	<classpathentry kind="lib" path="/java14-morozko-config/lib/format/csv/javacsv/2_1/javacsv.jar"/>
@@ -21,5 +20,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.mod.cmd"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

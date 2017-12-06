@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.morozko.java.core.lang.cl.ClassLoaderFacade;
-import org.morozko.java.core.util.PropsIO;
 import org.morozko.java.mod.tools.util.args.Arg;
 import org.morozko.java.mod.tools.util.args.ArgList;
 import org.morozko.java.mod.tools.util.args.ArgUtils;
