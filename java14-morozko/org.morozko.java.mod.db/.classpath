@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.core"/>
-	<classpathentry kind="lib" path="/java14-morozko-config/lib/morozko/mj-mod-cmd.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.morozko.java.mod.cmd"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
