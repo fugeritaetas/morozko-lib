@@ -61,6 +61,7 @@ public class ResultSetCMDOutput extends AbstractCMDOutput {
     private Connection connection;
     private ResultSet queryResult;
     private ResultSetMetaData meta;
+    private int rowCount;
     
     /**
      * <p>Crea un nuovo ResultSetCMDOutput</p>
@@ -72,6 +73,7 @@ public class ResultSetCMDOutput extends AbstractCMDOutput {
         this.queryResult = rs;
         this.meta = rsmd;
         this.connection = conn;
+        this.rowCount = 0;
     }
 
     /* (non-Javadoc)
@@ -148,6 +150,9 @@ public class ResultSetCMDOutput extends AbstractCMDOutput {
         boolean result = false;
         try {
             result = this.queryResult.next();
+            if ( result ) {
+            	this.rowCount++;	
+            }
         } catch (SQLException e) {
             throw (new CMDException(e));
         }
@@ -185,4 +190,11 @@ public class ResultSetCMDOutput extends AbstractCMDOutput {
         }
         return result;
     }
+
+	public int getCurrentRowCount() {
+		return this.rowCount;
+	}
+    
+    
+    
 }

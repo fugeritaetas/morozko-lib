@@ -96,15 +96,16 @@ public class SQLCMD implements CMD {
                 conn.close();
             }
         } catch (SQLException sqle) {
-            output = new WordCMDOutput(command, sqle.toString());
+        	String message = "SQLException : "+sqle;
             if (conn!=null)
                 try {
                     conn.close();
                 } catch (SQLException sqle1) {
-                    new WordCMDOutput(command, sqle.toString()+":"+sqle1.toString());
+                	message+= "[closeconnectionerror:"+sqle1+"]";
                 }
+            throw new CMDException( message, sqle);
         } catch (DAOException de) {
-            output = new WordCMDOutput(command, de.toString());
+            throw new CMDException( "DAPException : "+de, de);
         }
         return output;
     }

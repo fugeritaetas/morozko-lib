@@ -57,13 +57,13 @@ import org.morozko.java.mod.tools.util.args.ArgUtils;
  */
 public class JSQL {
     
-    public static final String VERSION = "0.1.8 (2016-04-20)";
+    public static final String VERSION = "0.2.0 (2017-12-07)";
     
     public static final int EXIT_OK = 0;
     public static final int EXIT_EXCEPTION = 1;
     
     private static void printInfo() {
-        ToolUtils.printInfo("JSQL v. "+VERSION, "Matteo Franci a.k.a Morozko");
+        ToolUtils.printInfo("JSQL v. "+VERSION, "Fugerit/Morozko");
     }
     
     private static void format( CMDOutputFormat format, CMDOutput output, String type ) throws CMDException {
@@ -144,7 +144,9 @@ public class JSQL {
             } else if ( execute != null ) {
             	printInfo();
             	System.out.println( "EXECUTE : '"+execute+"'" );
-            	format( format, cmd.handleCommand( execute ), b );
+            	CMDOutput out = cmd.handleCommand( execute );
+            	format( format, out, b );
+            	System.out.println( "ROW COUNT : '"+out.getCurrentRowCount()+"'" );
             } else if ( file != null ) {
             	printInfo();
             	format( format, cmd.handleCommand( FileIO.readString( new File( file ) ) ), b );
